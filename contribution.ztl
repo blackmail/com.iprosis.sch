@@ -1,0 +1,41 @@
+class com.iprosis.sch.iGauge extends Component {
+	/* Same method, returns a sample value */
+	int sampleMethod(/* sample argument */ String foo) {*
+		return 1;
+	*}
+
+	/* Returns the current color of the box */
+	String getColor() {*
+		return this.color;
+	*}
+
+	/* Sets the current color of the box */
+	void setColor(/* the new color */ String newColor) {*
+		this.color = newColor;
+	*}
+}
+
+class com.iprosis.sch.dateOffset extends Component {
+	String getDateAsText(){*		
+		return this.FixedDate;
+	*}
+	void setOffSetDays(int newOD){*
+		this.offDays = newOD;
+	*}
+}
+
+class com.iprosis.sch.totemTicker extends Component {
+	String setLine1(String L1){*
+		this.link1 = L1;
+	*} 
+}
+
+class com.iprosis.sch.horizontalScroller extends Component {
+	String getValue(){*		
+		return this.sdValue;
+	*}
+	
+	void setMin(int max){*
+		this.sMax = max;
+	*}
+}

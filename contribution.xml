@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension xmlns="http://www.sap.com/bi/zen/sdk"
+	title="iProsis SCH"
+	version="1.0"
+	vendor="iProsis"
+	id="com.iprosis.sch">
+		<component id="iGauge" title="iProsis Gauge" icon="res/icoFree.png"	
+		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+		databound="true">
+		
+						
+		<jsInclude>res/js/gauge.min.js</jsInclude>						
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/jgauge.css</cssInclude>						
+		<cssInclude>res/css/component.css</cssInclude>
+		
+		<property id="color" type="Color" title="Color" group="Display" />
+		<property type="String" title="Guage Header" id="guageHeader"></property>
+		<property id="onclick" type="ScriptText" title="On Click" group="Events" />
+		<property type="int" title="Minimum Value" id="minValue"></property>
+		<property type="int" title="Maximum Value" id="maxValue"></property>						
+ 		<property type="int" title="Gauge Type" id="gType"></property>						
+  		<property type="ResultCell"
+			title="ResultCell" id="dataResultCell"
+			tooltip="Holds a reference to a result cell" group="DataBinding">
+		</property>
+
+		<initialization>
+			<defaultValue property="WIDTH">300</defaultValue>
+			<defaultValue property="HEIGHT">70</defaultValue>
+			<defaultValue property="color">white</defaultValue>
+			<defaultValue property="guageHeader">Some Text</defaultValue>
+			<defaultValue property="minValue">0</defaultValue>
+			<defaultValue property="maxValue">100</defaultValue>
+		</initialization>
+	</component>
+	<component
+		id="dateOffset"
+		title="iProsis Date Offset"
+		icon="res/icon.png"	
+		handlerType="div">						
+								
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		
+		<property id="onclick" type="ScriptText" title="On Click" group="Events" />
+		<property type="int" title="Offset Days" id="offDays"></property>
+		<property type="String" title="Fixed Date" id="fixedDate"
+			visible="false">
+		</property>
+
+		<initialization>
+			<defaultValue property="WIDTH">100</defaultValue>
+			<defaultValue property="HEIGHT">30</defaultValue>			
+		</initialization>
+	</component>
+	
+	<component
+		id="totemTicker"
+		title="iProsis Totem Ticker"
+		icon="res/icon.png"	
+		handlerType="div">
+								
+		<jsInclude>res/js/jquery.totemticker.min.js</jsInclude>								
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/totem.css</cssInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		
+		<property id="onclick1" type="ScriptText" title="On Click 1" group="Events" />
+		<property id="onclick2" type="ScriptText" title="On Click 2" group="Events" />
+		<property id="onclick3" type="ScriptText" title="On Click 3" group="Events" />
+		<property id="onclick4" type="ScriptText" title="On Click 4" group="Events" />
+		<property id="onclick5" type="ScriptText" title="On Click 5" group="Events" />
+		<property id="onclick6" type="ScriptText" title="On Click 6" group="Events" />
+		<property id="onclick7" type="ScriptText" title="On Click 7" group="Events" />
+		<property id="onclick8" type="ScriptText" title="On Click 8" group="Events" />		
+		<property id="onclick9" type="ScriptText" title="On Click 9" group="Events" />
+		<property id="onclick10" type="ScriptText" title="On Click 10" group="Events" />				
+		<property type="String" title="Link 1 Text" id="link1"></property>
+		<property type="String" title="Link 2 Text" id="link2"></property>
+		<property type="String" title="Link 3 Text" id="link3"></property>
+		<property type="String" title="Link 4 Text" id="link4"></property>
+		<property type="String" title="Link 5 Text" id="link5"></property>
+		<property type="String" title="Link 6 Text" id="link6"></property>
+		<property type="String" title="Link 7 Text" id="link7"></property>
+		<property type="String" title="Link 8 Text" id="link8"></property>		
+		<property type="String" title="Link 9 Text" id="link9"></property>
+		<property type="String" title="Link 10 Text" id="link10"></property>
+		<initialization>
+			<defaultValue property="WIDTH">100</defaultValue>
+			<defaultValue property="HEIGHT">30</defaultValue>			
+		</initialization>
+	</component>
+	<component
+		id="horizontalScroller"
+		title="iProsis Horizontal Scroller"
+		icon="res/slider-icon.png"	
+		handlerType="div">						
+								
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		
+		<property id="onChange" type="ScriptText" title="On Click" group="Events" />
+		<property type="String" title="Selected Value" id="sdValue" visible="false"></property>
+		<property type="int" title="Default Value" id="sValue"></property>
+		<property type="int" title="Min Value" id="sMin"></property>
+		<property type="int" title="Max Value" id="sMax"></property>
+		
+		<initialization>
+			<defaultValue property="WIDTH">100</defaultValue>
+			<defaultValue property="HEIGHT">30</defaultValue>			
+		</initialization>
+	</component>
+		
+</sdkExtension>

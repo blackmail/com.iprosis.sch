@@ -137,9 +137,9 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.dateOffset", function()
 		var cDate = date.getDate();
 		var cMonth = date.getMonth() + 1;
 		var cYear = date.getFullYear();
-		var qq = cDate + "/" + cMonth + "/" + cYear;
+		var fDate = cDate + "/" + cMonth + "/" + cYear;
 				
-		return qq;		
+		return fDate;		
 	}
 	
 	this.init = function() {					  

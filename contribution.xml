@@ -110,5 +110,32 @@
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>
+	
+		<component
+		id="countUp"
+		title="iProsis CountUp"
+		icon="res/counter.png"	
+		handlerType="div"
+		databound="true">						
+								
+		<jsInclude>res/js/countUp.min.js</jsInclude>
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/component.css</cssInclude>
 		
+		<property id="onclick" type="ScriptText" title="On Click" group="Events" />				
+		<property type="int" title="Start Value" id="cStart"></property>
+		<property type="float" title="Duration" id="duration"></property>
+		<property type="ResultCell"
+			title="End Value" id="cEnd"
+			tooltip="Holds a reference to a result cell" group="DataBinding">
+		</property>
+		
+		<initialization>
+			<defaultValue property="cStart">0</defaultValue>
+			<defaultValue property="duration">0.8</defaultValue>	
+			<defaultValue property="WIDTH">100</defaultValue>
+			<defaultValue property="HEIGHT">30</defaultValue>			
+		</initialization>
+	</component>
+				
 </sdkExtension>

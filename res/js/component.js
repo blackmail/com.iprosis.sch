@@ -5,7 +5,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 
 	function creatjGauge(chartType){
 				
-		if ( chartType == "donut" ){
+		if (chartType == "donut"){
 			var angleValue = 0.35;
 			var lineWidthValue = 0.15;
 			var cOpts = setOpts(angleValue, lineWidthValue);
@@ -49,8 +49,8 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 			var data = null;
 			this.$().empty();										
 								
-			if ( saveDataResultCell ){			
-				if ( sap && sap.zen && sap.zen.designmode){
+			if (saveDataResultCell){			
+				if (sap && sap.zen && sap.zen.designmode){
 					this.$().html('Data was selected, object will appear in running time.');
 				}
 				
@@ -194,8 +194,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.totemTicker", function(
 			}
 			
 			var liLine = '<li id="totemLine' + i + '">' + textLine + '</li>';
-			tTicker = tTicker + liLine;
-						
+			tTicker = tTicker + liLine;						
 		}
 		
 		tTicker = tTicker + '</ul>';
@@ -313,4 +312,70 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.horizontalScroller", fu
 			return this;   
 		}   
     };   
-});  
+});
+
+sap.designstudio.sdk.Component.subclass("com.iprosis.sch.countUp", function() {  
+	var that = this;
+	var startValue = null, endValue = null, dur = null;
+	this._alive = false;  
+	
+	var options = {
+			useEasing : true,
+			useGrouping : true,
+			separator : ',',
+			decimal : '.'
+	};
+	
+	this.init = function() {
+		 if (this._alive) {   
+			 return;  
+		 } else {  
+			this.$().html('<h1 id="countUpElement"></h1>');
+			this.$().click(function() {
+				that.fireEvent("onclick");
+			});
+			this._alive = true;		
+		}
+	};
+		
+	this.afterUpdate = function() {   
+		var CountUp = new countUp("countUpElement", startValue, endValue, 0, dur, options);
+		CountUp.start();
+	};
+	
+	this.cEnd = function(value) {
+		if (value === undefined) {
+			return endValue;
+		} else {
+			endValue = value;
+			return this;
+		}
+	};
+	
+	this.cStart = function(value) {  
+		if (value === undefined) {  
+			return startValue = 0;  
+	    } else {  
+	    	startValue = value;  
+	    	return this;  
+	    }       
+	};
+	    
+	this.cEnd = function(value) {  
+		if (value === undefined) {  
+			return endValue = 100;  
+	    } else {  
+	    	endValue = value;   
+	    	return this;  
+	    }       
+	};
+	
+	this.duration = function(value) {  
+		if (value === undefined) {  
+			return dur = 0.8;  
+	    } else {  
+	    	dur = value;  
+	    	return this;  
+	    }
+	};
+});

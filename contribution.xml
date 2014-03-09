@@ -4,12 +4,10 @@
 	version="1.0"
 	vendor="iProsis"
 	id="com.iprosis.sch">
-		<component id="iGauge" title="iProsis Gauge" icon="res/icoFree.png"	
-		handlerType="div"
+	<component id="iGauge" title="iProsis Gauge" icon="res/icoFree.png"	handlerType="div"
 		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
 		databound="true">
-		
-						
+								
 		<jsInclude>res/js/gauge.min.js</jsInclude>						
 		<jsInclude>res/js/component.js</jsInclude>						
 		<cssInclude>res/css/component.css</cssInclude>		
@@ -33,11 +31,7 @@
 			<defaultValue property="maxValue">100</defaultValue>
 		</initialization>
 	</component>
-	<component
-		id="dateOffset"
-		title="iProsis Date Offset"
-		icon="res/icon.png"	
-		handlerType="div">						
+	<component id="dateOffset" title="iProsis Date Offset" icon="res/icon.png" handlerType="div">						
 								
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
@@ -53,12 +47,7 @@
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>
-	
-	<component
-		id="totemTicker"
-		title="iProsis Totem Ticker"
-		icon="res/icon.png"	
-		handlerType="div">
+	<component id="totemTicker" title="iProsis Totem Ticker" icon="res/icon.png" handlerType="div">
 								
 		<jsInclude>res/js/jquery.totemticker.min.js</jsInclude>								
 		<jsInclude>res/js/component.js</jsInclude>
@@ -90,11 +79,7 @@
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>
-	<component
-		id="horizontalScroller"
-		title="iProsis Horizontal Scroller"
-		icon="res/slider-icon.png"	
-		handlerType="div">						
+	<component id="horizontalScroller" title="iProsis Horizontal Scroller" icon="res/slider-icon.png" handlerType="div">						
 								
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
@@ -109,17 +94,13 @@
 			<defaultValue property="WIDTH">100</defaultValue>
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
-	</component>
-	
-		<component
-		id="countUp"
-		title="iProsis CountUp"
-		icon="res/counter.png"	
-		handlerType="div"
-		databound="true">						
+	</component>	
+	<component id="countUp" title="iProsis CountUp" icon="res/counter.png" handlerType="div" databound="true">						
 								
+		<jsInclude>res/js/odometer.min.js</jsInclude>
 		<jsInclude>res/js/countUp.min.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/odometer-theme-default.css</cssInclude>
 		<cssInclude>res/css/component.css</cssInclude>
 		
 		<property id="onclick" type="ScriptText" title="On Click" group="Events" />				
@@ -136,6 +117,5 @@
 			<defaultValue property="WIDTH">100</defaultValue>
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
-	</component>
-				
+	</component>		
 </sdkExtension>

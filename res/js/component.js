@@ -317,30 +317,42 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.horizontalScroller", fu
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.countUp", function() {  
 	var that = this;
 	var startValue = null, endValue = null, dur = null;
-	this._alive = false;  
+	this._alive = false;
+	this._sl = null;
 	
 	var options = {
 			useEasing : true,
 			useGrouping : true,
-			separator : ',',
-			decimal : '.'
-	};
+			separator : ',',						
+			auto: false,
+			selector: '.odometer',
+			format: '(,ddd)',
+			duration: 3000,
+		};
 	
 	this.init = function() {
 		 if (this._alive) {   
 			 return;  
 		 } else {  
-			this.$().html('<h1 id="countUpElement"></h1>');
+			this.$().html('<div id="odometer" class="odometer"></div>');
+			
+			var el = document.querySelector('.odometer');
+			var od = new Odometer({
+					el: el,
+					value: 0,			
+				});
+			
+			$(".odometer").css({"font-size": "48px"});			
 			this.$().click(function() {
 				that.fireEvent("onclick");
 			});
+			this._sl = od;
 			this._alive = true;		
 		}
 	};
 		
-	this.afterUpdate = function() {   
-		var CountUp = new countUp("countUpElement", startValue, endValue, 0, dur, options);
-		CountUp.start();
+	this.afterUpdate = function() {   			
+		this._sl.update(endValue);		
 	};
 	
 	this.cEnd = function(value) {
@@ -363,16 +375,17 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.countUp", function() {
 	    
 	this.cEnd = function(value) {  
 		if (value === undefined) {  
-			return endValue = 100;  
+			return endValue;  
 	    } else {  
-	    	endValue = value;   
+	    	//endValue = value;    
+	    	endValue = 5000000.00;   
 	    	return this;  
 	    }       
 	};
 	
 	this.duration = function(value) {  
 		if (value === undefined) {  
-			return dur = 0.8;  
+			return dur;  
 	    } else {  
 	    	dur = value;  
 	    	return this;  

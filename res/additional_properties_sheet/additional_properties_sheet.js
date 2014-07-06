@@ -11,9 +11,9 @@ sap.designstudio.sdk.PropertyPage.subclass("com.iprosis.sch.iGaugePropertyPage",
 
 	this.gType = function(value) {
 		if (value === undefined) {			
-			return $("#aps_color").val();			
+			return $("#gaugeType").val();			
 		} else {
-			$("#aps_color").val(value);			
+			$("#gaugeType").val(value);			
 			return this;
 		}
 	};

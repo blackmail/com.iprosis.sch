@@ -4,118 +4,191 @@
 	version="1.0"
 	vendor="iProsis"
 	id="com.iprosis.sch">
-	<component id="iGauge" title="iProsis Gauge" icon="res/icoFree.png"	handlerType="div"
+	<group title="iProsis" id="iprosis" />
+	<component id="iGauge" title="iProsis Gauge" icon="res/icoFree.png"
+		handlerType="div"
 		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		databound="true">
-								
-		<jsInclude>res/js/gauge.min.js</jsInclude>						
-		<jsInclude>res/js/component.js</jsInclude>						
-		<cssInclude>res/css/component.css</cssInclude>		
-		<property id="color" type="Color" title="Color" group="Display" />
-		<property type="String" title="Guage Header" id="guageHeader"></property>
-		<property id="onclick" type="ScriptText" title="On Click" group="Events" />
-		<property type="int" title="Minimum Value" id="minValue"></property>
-		<property type="int" title="Maximum Value" id="maxValue"></property>						
- 		<property type="int" title="Gauge Type" id="gType"></property>						
-  		<property type="ResultCell"
-			title="ResultCell" id="dataResultCell"
-			tooltip="Holds a reference to a result cell" group="DataBinding">
-		</property>
+		tooltip="Gauge" databound="true" group="iprosis">
 
+		<jsInclude>res/js/gauge.min.js</jsInclude>
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
+		<property id="minValue" title="Minimum Value" type="int"></property>
+		<property id="maxValue" title="Maximum Value" type="int"></property>
+		<!--  <property id="gType" title="Gauge Type" type="int" visible="false"></property>-->
+		<property id="gType" title="Gauge Type" type="String">
+			<possibleValue>Donut</possibleValue>
+			<possibleValue>Gauge</possibleValue>
+		</property>
+		<property id="dataResultCell" title="ResultCell" type="ResultCell"
+			tooltip="Holds a reference to a result cell"
+			group="DataBinding">
+		</property>
 		<initialization>
 			<defaultValue property="WIDTH">300</defaultValue>
 			<defaultValue property="HEIGHT">70</defaultValue>
-			<defaultValue property="color">white</defaultValue>
-			<defaultValue property="guageHeader">Some Text</defaultValue>
+			<defaultValue property="gType">Gauge</defaultValue>
 			<defaultValue property="minValue">0</defaultValue>
 			<defaultValue property="maxValue">100</defaultValue>
 		</initialization>
 	</component>
-	<component id="dateOffset" title="iProsis Date Offset" icon="res/icon.png" handlerType="div">						
+	<component id="dateOffset" title="iProsis Date Offset" icon="res/icon.png" handlerType="div" group="iprosis">						
 								
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
 		
-		<property id="onclick" type="ScriptText" title="On Click" group="Events" />
-		<property type="int" title="Offset Days" id="offDays"></property>
-		<property type="String" title="Fixed Date" id="fixedDate"
-			visible="false">
-		</property>
-
+		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
+		<property id="offDays" title="Offset Days" type="int"></property>
+		<property id="fixedDate" title="Fixed Date" type="String" visible="false"></property>
 		<initialization>
 			<defaultValue property="WIDTH">100</defaultValue>
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>
-	<component id="totemTicker" title="iProsis Totem Ticker" icon="res/icon.png" handlerType="div">
+	<component id="totemTicker" title="iProsis Totem Ticker" icon="res/icon.png" handlerType="div" group="iprosis">
 								
 		<jsInclude>res/js/jquery.totemticker.min.js</jsInclude>								
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/totem.css</cssInclude>
 		<cssInclude>res/css/component.css</cssInclude>
 		
-		<property id="onclick1" type="ScriptText" title="On Click 1" group="Events" />
-		<property id="onclick2" type="ScriptText" title="On Click 2" group="Events" />
-		<property id="onclick3" type="ScriptText" title="On Click 3" group="Events" />
-		<property id="onclick4" type="ScriptText" title="On Click 4" group="Events" />
-		<property id="onclick5" type="ScriptText" title="On Click 5" group="Events" />
-		<property id="onclick6" type="ScriptText" title="On Click 6" group="Events" />
-		<property id="onclick7" type="ScriptText" title="On Click 7" group="Events" />
-		<property id="onclick8" type="ScriptText" title="On Click 8" group="Events" />		
-		<property id="onclick9" type="ScriptText" title="On Click 9" group="Events" />
-		<property id="onclick10" type="ScriptText" title="On Click 10" group="Events" />				
-		<property type="String" title="Link 1 Text" id="link1"></property>
-		<property type="String" title="Link 2 Text" id="link2"></property>
-		<property type="String" title="Link 3 Text" id="link3"></property>
-		<property type="String" title="Link 4 Text" id="link4"></property>
-		<property type="String" title="Link 5 Text" id="link5"></property>
-		<property type="String" title="Link 6 Text" id="link6"></property>
-		<property type="String" title="Link 7 Text" id="link7"></property>
-		<property type="String" title="Link 8 Text" id="link8"></property>		
-		<property type="String" title="Link 9 Text" id="link9"></property>
-		<property type="String" title="Link 10 Text" id="link10"></property>
+		<property id="onclick1" title="On Click 1" type="ScriptText" group="Events"></property>
+		<property id="onclick2" title="On Click 2" type="ScriptText" group="Events"></property>
+		<property id="onclick3" title="On Click 3" type="ScriptText" group="Events"></property>
+		<property id="onclick4" title="On Click 4" type="ScriptText" group="Events"></property>
+		<property id="onclick5" title="On Click 5" type="ScriptText" group="Events"></property>
+		<property id="onclick6" title="On Click 6" type="ScriptText" group="Events"></property>
+		<property id="onclick7" title="On Click 7" type="ScriptText" group="Events"></property>
+		<property id="onclick8" title="On Click 8" type="ScriptText" group="Events"></property>		
+		<property id="onclick9" title="On Click 9" type="ScriptText" group="Events"></property>
+		<property id="onclick10" title="On Click 10" type="ScriptText" group="Events"></property>			
+		<property id="link1" title="Link 1 Text" type="String"></property>
+		<property id="link2" title="Link 2 Text" type="String"></property>
+		<property id="link3" title="Link 3 Text" type="String"></property>
+		<property id="link4" title="Link 4 Text" type="String"></property>
+		<property id="link5" title="Link 5 Text" type="String"></property>
+		<property id="link6" title="Link 6 Text" type="String"></property>
+		<property id="link7" title="Link 7 Text" type="String"></property>
+		<property id="link8" title="Link 8 Text" type="String"></property>
+		<property id="link9" title="Link 9 Text" type="String"></property>
+		<property id="link10" title="Link 10 Text" type="String"></property>
 		<initialization>
 			<defaultValue property="WIDTH">100</defaultValue>
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>
-	<component id="horizontalScroller" title="iProsis Horizontal Scroller" icon="res/slider-icon.png" handlerType="div">						
+	<component id="horizontalScroller" title="iProsis Horizontal Scroller" icon="res/slider-icon.png" handlerType="div" group="iprosis">						
 								
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
 		
-		<property id="onChange" type="ScriptText" title="On Click" group="Events" />
-		<property type="String" title="Selected Value" id="sdValue" visible="false"></property>
-		<property type="int" title="Default Value" id="sValue"></property>
-		<property type="int" title="Min Value" id="sMin"></property>
-		<property type="int" title="Max Value" id="sMax"></property>
-		
+		<property id="onChange" title="On Click" type="ScriptText" group="Events" />
+		<property id="sdValue" title="Selected Value" type="String" visible="false"></property>
+		<property id="sValue" title="Default Value" type="int"></property>
+		<property id="sMin" title="Min Value" type="int"></property>
+		<property id="sMax" title="Max Value" type="int"></property>
 		<initialization>
 			<defaultValue property="WIDTH">100</defaultValue>
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>	
-	<component id="countUp" title="iProsis CountUp" icon="res/counter.png" handlerType="div" databound="true">						
+	<component id="countUp" title="iProsis CountUp" icon="res/counter.png" handlerType="div" databound="true" group="iprosis">						
 								
-		<jsInclude>res/js/odometer.min.js</jsInclude>
-		<jsInclude>res/js/countUp.min.js</jsInclude>
-		<jsInclude>res/js/component.js</jsInclude>
-		<cssInclude>res/css/odometer-theme-default.css</cssInclude>
+		<jsInclude>res/js/jshashtable.js</jsInclude>
+		<jsInclude>res/js/jquery.numberformatter-1.2.2.min.js</jsInclude>	
+		<jsInclude>res/js/jquery.easing.1.3.js</jsInclude>	
+		<jsInclude>res/js/jquery.flipCounter.1.2.pack.js</jsInclude>
+		<jsInclude>res/js/component.js</jsInclude>		
 		<cssInclude>res/css/component.css</cssInclude>
 		
-		<property id="onclick" type="ScriptText" title="On Click" group="Events" />				
-		<property type="int" title="Start Value" id="cStart"></property>
-		<property type="float" title="Duration" id="duration"></property>
-		<property type="ResultCell"
-			title="End Value" id="cEnd"
+		<property id="onclick" title="On Click" type="ScriptText" group="Events" />				
+		<property id="CStart" title="Start Value" type="int"></property>
+		<property id="CDuration" title="Duration (in ms)" type="int"></property>
+		<property id="CEnd" title="End Value" type="ResultCell"
 			tooltip="Holds a reference to a result cell" group="DataBinding">
+		</property>				
+		<initialization>
+			<defaultValue property="CStart">0</defaultValue>
+			<defaultValue property="CDuration">500</defaultValue>
+			<defaultValue property="WIDTH">300</defaultValue>
+			<defaultValue property="HEIGHT">60</defaultValue>			
+		</initialization>
+	</component>
+	
+	
+	<component id="sGauge" title="iProsis Gauge for SMLT" icon="res/icoFree.png"
+		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+		tooltip="Gauge" databound="true" group="iprosis">
+
+		<jsInclude>res/js/gauge.min.js</jsInclude>
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
+		<property id="MinValue" title="Minimum Value" type="int"></property>
+		<property id="MaxValue" title="Maximum Value" type="ResultCell"></property>		
+		<property id="LineWidth" title="Line Width" type="int"></property>		
+		<property id="DataResultCell" title="ResultCell" type="ResultCell"
+			tooltip="Holds a reference to a result cell"
+			group="DataBinding">
 		</property>
 		
+		<property id="LowColor" title="Low Color" type="Color"></property>
+		<property id="MediumColor" title="Medium Color" type="Color"></property>
+		<property id="HighColor" title="High Color" type="Color"></property>
+		<property id="PointerColor" title="Pointer Color" type="Color"></property>
+		<property id="LowEndPerc" title="Low Color End Percent" type="int"></property>
+		<property id="MediumEndPerc" title="Medium Color End Percent" type="int"></property>
+		<property id="Backlash" title="backlash" type="float"></property>
 		<initialization>
-			<defaultValue property="cStart">0</defaultValue>
-			<defaultValue property="duration">0.8</defaultValue>	
-			<defaultValue property="WIDTH">100</defaultValue>
-			<defaultValue property="HEIGHT">30</defaultValue>			
+			<defaultValue property="WIDTH">300</defaultValue>
+			<defaultValue property="HEIGHT">100</defaultValue>			
+			<defaultValue property="MinValue">0</defaultValue>
+			<defaultValue property="MaxValue">100</defaultValue>
+			<defaultValue property="LineWidth">30</defaultValue>
+			<defaultValue property="LowColor">#FF0000</defaultValue>
+			<defaultValue property="MediumColor">#FF8000</defaultValue>
+			<defaultValue property="HighColor">#00FF00</defaultValue>
+			<defaultValue property="PointerColor">#00000</defaultValue>
+			<defaultValue property="LowEndPerc">70</defaultValue>
+			<defaultValue property="MediumEndPerc">95</defaultValue>
+			<defaultValue property="Backlash">0.06</defaultValue>
+		</initialization>
+	</component>
+	<component id="iKPI" title="iProsis KPI Tile" icon="res/icoFree.png"
+		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+		tooltip="KPI Tile" databound="true" group="iprosis">
+	<jsInclude>res/js/component.js</jsInclude>
+	<cssInclude>res/css/component.css</cssInclude>
+	<property id="onclick" title="On Click" type="ScriptText" group="Events" />
+	<property id="SelectedValue1" title="Selected Value 1" type="String" tooltip="Title">
+	</property>
+	<property id="SelectedValue2" title="Selected Value 2" type="ResultCell"
+			tooltip="Holds a reference to a result cell"
+			group="DataBinding">
+	</property>
+	<property id="SelectedValue3" title="Selected Value 3" type="ResultCell"
+			tooltip="Holds a reference to a result cell"
+			group="DataBinding">
+	</property>
+	<property id="NBgCol" title="Negetive Background Color" type="Color" group="Display" />
+	<property id="NFCol" title="Negetive Font Color" type="Color" group="Display" />
+	<property id="PBgCol" title="Positive Background Color" type="Color" group="Display" />
+	<property id="PFCol" title="Positive Font Color" type="Color" group="Display" />
+	<property id="Value1FS" title="Value 1 Font Size in PX" type="int" group="Display" />
+	<property id="Value2FS" title="Value 2 Font Size in PX" type="int" group="Display" />
+	<property id="Value3FS" title="Value 3 Font Size in PX" type="int" group="Display" />
+		<initialization>	
+			<defaultValue property="PBackground">#C6EFCE</defaultValue>
+			<defaultValue property="NBackground">#FFC7CE</defaultValue>
+			<defaultValue property="PFCol">#006100</defaultValue>
+			<defaultValue property="NFCol">#9B0006</defaultValue>
+			<defaultValue property="Value1FS">14</defaultValue>
+			<defaultValue property="Value2FS">24</defaultValue>
+			<defaultValue property="Value3FS">14</defaultValue>
+			
 		</initialization>
 	</component>		
 </sdkExtension>

@@ -39,3 +39,10 @@ class com.iprosis.sch.horizontalScroller extends Component {
 		this.sMax = max;
 	*}
 }
+
+class com.iprosis.sch.sGauge extends Component {
+	void setSelectedValue(ResultCell selectedValue){*
+		this.DataResultCell = selectedValue;
+	*}
+
+}

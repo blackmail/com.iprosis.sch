@@ -123,13 +123,18 @@
 		tooltip="Gauge" databound="true" group="iprosis">
 
 		<jsInclude>res/js/gauge.min.js</jsInclude>
+		<!-- <jsInclude>res/js/gauge.js</jsInclude> -->
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
 		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
 		<property id="MinValue" title="Minimum Value" type="int"></property>
-		<property id="MaxValue" title="Maximum Value" type="ResultCell"></property>		
+		<property id="MaxValue" title="Maximum Value" type="int"></property>		
 		<property id="LineWidth" title="Line Width" type="int"></property>		
 		<property id="DataResultCell" title="ResultCell" type="ResultCell"
+			tooltip="Holds a reference to a result cell"
+			group="DataBinding">
+		</property>
+		<property id="DataResultCell1" title="ResultCell1" type="ResultCell"
 			tooltip="Holds a reference to a result cell"
 			group="DataBinding">
 		</property>
@@ -137,20 +142,29 @@
 		<property id="LowColor" title="Low Color" type="Color"></property>
 		<property id="MediumColor" title="Medium Color" type="Color"></property>
 		<property id="HighColor" title="High Color" type="Color"></property>
+		<property id="ShowScaling" title="Show Scaling Values" type="boolean"></property>
+		<property id="NoOfNeedles" title="Number of Needles" type="int" >
+			<possibleValue>1</possibleValue>
+			<possibleValue>2</possibleValue>
+		</property>
 		<property id="PointerColor" title="Pointer Color" type="Color"></property>
+		<property id="PointerColor1" title="Pointer Color1" type="Color"></property>
 		<property id="LowEndPerc" title="Low Color End Percent" type="int"></property>
 		<property id="MediumEndPerc" title="Medium Color End Percent" type="int"></property>
-		<property id="Backlash" title="backlash" type="float"></property>
+		<property id="Backlash" title="Backlash" type="float"></property>
 		<initialization>
-			<defaultValue property="WIDTH">300</defaultValue>
+			<defaultValue property="WIDTH">200</defaultValue>
 			<defaultValue property="HEIGHT">100</defaultValue>			
 			<defaultValue property="MinValue">0</defaultValue>
-			<defaultValue property="MaxValue">100</defaultValue>
+			<defaultValue property="MaxValue">200</defaultValue>
 			<defaultValue property="LineWidth">30</defaultValue>
 			<defaultValue property="LowColor">#FF0000</defaultValue>
 			<defaultValue property="MediumColor">#FF8000</defaultValue>
 			<defaultValue property="HighColor">#00FF00</defaultValue>
+			<defaultValue property="noOfNeedles">1</defaultValue>
+			
 			<defaultValue property="PointerColor">#00000</defaultValue>
+			<defaultValue property="PointerColor1">#666666</defaultValue>
 			<defaultValue property="LowEndPerc">70</defaultValue>
 			<defaultValue property="MediumEndPerc">95</defaultValue>
 			<defaultValue property="Backlash">0.06</defaultValue>
@@ -190,5 +204,31 @@
 			<defaultValue property="Value3FS">14</defaultValue>
 			
 		</initialization>
+	</component>
+	
+	
+	<component id="iDonut" title="iProsis Donut" icon="res/icoFree.png"
+		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+		tooltip="Donut" databound="true" group="iprosis">
+		<jsInclude>res/js/component.js</jsInclude>
+		<jsInclude>res/js/raphael-min.js</jsInclude>
+		<jsInclude>res/js/morris.js</jsInclude>
+		<cssInclude>res/css/morris.css</cssInclude>
+		<cssInclude>res/css/example.css</cssInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
+		<property id="DataR" title="Data Set" type="ResultCellSet"
+				tooltip="Data for chart"
+				group="DataBinding">
+		</property>
+	
+	
+		<initialization>	
+			<!-- <defaultValue property="PBackground">#C6EFCE</defaultValue> -->
+		</initialization>
 	</component>		
+	
+	
+			
 </sdkExtension>

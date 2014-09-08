@@ -395,23 +395,172 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.countUp", function() {
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 
 	var that = this;
-	var dataResultCell = null, dataResultCell1 = null, actualValue = null, actualValue1 = null, minValue = null, maxValue = null, currentDiv = null;  gaugeDiv = null; arcDiv = null, maxDiv = null, MinDiv = null, arcElement = null, lineWidth = null,
-	lowColor = null, mediumColor = null, highColor = null, pointerColor = null, pointerColor1 = null, lowEndPerc = null, mediumEndPerc = null,
-	backlash = null, showScaling = null, noOfNeedles = null;
-	var nearZero = 0.00000001;
+	var dataResultCell = null, dataResultCell1 = null, hardCodedValue = null, hardCodedValue1 = null, actualValue = null, actualValue1 = null, minValue = null, maxValue = null, currentDiv = null;  gaugeDiv = null; arcDiv = null, maxDiv = null, MinDiv = null, arcElement = null, lineWidth = null,
+	lowColor = null, mediumColor = null, highColor = null, pointerColor = null, pointerColor1 = null, pointerLength = null, pointer1Length = null, pointerStroke =null, pointer1Stroke =null, lowEndPerc = null, mediumEndPerc = null,
+	backlash = null, showScaling = null, noOfNeedles = null, startingPoints = null, sRadius = null, lPerc = null, mPerc = null, noOfTicks = null, noOfTicks1 = null,
+	ticksColor = null, ticksColor1 = null, noOfTickmarks = null, fontSizePerc = null, tickmarksColor = null, ticksRadius = null, tickmarksRadius = null;
+	
+	//var gaugeTop = null; // Eitan Rabinovich, Sep 8, 2014 - 12:52:06 PM
+
+	var divW = null, divH = null;
+	
 	this._alive = false;
 	
 	this.gaugeDiv = null;
 	this.gaugeDiv1 = null;
 	this.arcDiv = null;
+	this.gaugeDial = null;
 
-	function createArc(startingPoints, aRadius, sPoint, ePoint, aColor){
-//	function createArc(startingPoints, aRadius, sPoint, ePoint, aColor, bColor){// Eitan Rabinovich, Aug 14, 2014 - 11:17:53 AM
+	var NEARZERO = 0.00000001;	
 
+	function createHtml(){
+		currentDiv = that.$().attr('id');
+		currentTable = currentDiv + "table";
+		currentDial = currentDiv + "Dial";
+		that.gaugeDiv = document.createElement("canvas");
+		that.gaugeDiv1 = document.createElement("canvas");
+		that.arcDiv = document.createElement("canvas");
+		that.pointerArc = document.createElement("canvas"); // Eitan Rabinovich, Aug 18, 2014 - 12:22:49 PM
+		that.gaugeDial = document.createElement("canvas");
+
+		that.gaugeDiv.className = "sGauge";
+		that.gaugeDiv1.className = "sGauge";
+		that.arcDiv.className = "sGaugeArc";
+		that.gaugeDial.className = "sGaugeDial";
+			
+		that.$().append($(that.pointerArc)); // Eitan Rabinovich, Aug 18, 2014 - 12:23:29 PM
+		that.$().append($(that.gaugeDiv1));
+		that.$().append($(that.gaugeDiv));
+		that.$().append($(that.arcDiv));
+		that.$().append($(that.gaugeDial));
+	}
+	
+	
+	function settingObjectsSize(){
+		divW = that.$().width();
+		divH = that.$().height();
+
+		if (divH > divW/2 || divH == divW/2) {
+			divH = divW/2;
+		} else {
+			divW = divH * 2;
+		}
+		
+		if (divH > 149){
+			var gaugeTop = 4 + (divH - 150)/100 * 12;
+			var gaugeTopPx = gaugeTop + "px";
+			
+			that.gaugeDiv.style.top = gaugeTopPx;
+			that.gaugeDiv1.style.top = gaugeTopPx;
+		}
+
+		that.arcDiv.width = divW;
+		that.arcDiv.height = divH + 8;
+		
+		that.gaugeDial.width = divW;
+		that.gaugeDial.height = divH;
+		
+		that.gaugeDiv.width = divW;
+		that.gaugeDiv.height = divH;
+		that.gaugeDiv1.width = divW;
+		that.gaugeDiv1.height = divH;
+		
+		startingPoints = divH;
+		sRadius = startingPoints - lineWidth/2;		
+	}
+	
+	function setScaling(){
+			
+			that.valueTables = document.createElement("table");
+			that.valueTables.setAttribute("id", currentTable);
+			
+			that.valueTables.width = divW;
+			
+			that.tdMaxValue = document.createElement("td");
+			that.tdMinValue = document.createElement("td");
+			that.textMax = document.createTextNode(maxValue);
+			that.textMin = document.createTextNode(minValue);
+	
+			that.valueTables.appendChild(that.tdMinValue);
+			that.valueTables.appendChild(that.tdMaxValue);
+			that.tdMaxValue.appendChild(that.textMax);
+			that.tdMinValue.appendChild(that.textMin);
+			that.$().append($(that.valueTables));
+			
+			that.valueTables.className = "valueTables";
+			that.tdMaxValue.className = "divMaxValue";
+			that.tdMinValue.className = "divMinValue";
+	}
+	
+	
+	function setActualValue(recivedValue){
+		
+		var originalValue = null;
+		
+		if (typeof recivedValue == "object"){
+			originalValue = recivedValue.data[0];
+		} else {
+			originalValue = recivedValue;
+		}
+		
+		//if (recivedValue == null || recivedValue == "" || recivedValue.data[0] == null){
+		if (originalValue == null || originalValue == "" || originalValue == 0){
+			actualValue = NEARZERO;
+		} else {
+			//if (recivedValue.data[0] > maxValue || recivedValue.data[0] == maxValue){
+			if (originalValue > maxValue || originalValue == maxValue){
+				actualValue = maxValue;
+			//} else if (recivedValue.data[0] < minValue || recivedValue.data[0] == minValue){
+			} else if (originalValue < minValue || originalValue == minValue){
+				actualValue = NEARZERO;
+			} else {
+				//actualValue = (recivedValue.data[0]-minValue)/(maxValue-minValue)*maxValue;
+				actualValue = (originalValue-minValue)/(maxValue-minValue)*maxValue;
+			}
+		}
+		
+		return actualValue;
+	}
+	
+	function drawDial(currentDial, minValue, maxValue){ // Eitan Rabinovich, Sep 4, 2014 - 1:49:12 PM
+
+		var tempGauge = new CanvasDial(currentDial);
+		//var gaugeParams = {value:22, units:'\xB0'+'C', sweep:180, rotation:180, minvalue:minValue, maxvalue:maxValue, tickmarks:noOfTickmarks, fontfamily:'Helvetica, Arial, sans-serif', bgcolor:'#224'};
+		var gaugeParams = {sweep:180, rotation:180, minvalue:minValue, maxvalue:maxValue, tickmarks:noOfTickmarks, fontfamily:'Helvetica, Arial, sans-serif', bgcolor:'#224'};
+		tempGauge.setBaseParameters(gaugeParams);
+		tempGauge.drawTicks({radiusPercent:ticksRadius, lengthPercent:4, tickWidth:1, color:'#220'});	
+		tempGauge.drawTicks({numTicks:noOfTicks1, radiusPercent:ticksRadius, lengthPercent:2, tickWidth:1, color:ticksColor1});
+		tempGauge.drawTicks({numTicks:noOfTicks, radiusPercent:ticksRadius, lengthPercent:5, tickWidth:1, color:ticksColor});
+		tempGauge.drawScale({radiusPercent:tickmarksRadius, fontSizePercent:fontSizePerc, color:tickmarksColor});
+		
+	}	
+	
+	function createPointerArc(startingPoints){
+		var context = that.pointerArc.getContext('2d');
+		context.beginPath();		
+		context.arc(startingPoints, 0, 5, Math.PI, 0);
+		context.lineWidth = 10;
+		context.strokeStyle = "#666666";
+		context.stroke();
+	}
+
+	function drawArc(){
+		lPerc = 1 + ((lowEndPerc-minValue)/(maxValue-minValue)*maxValue - backlash)/100; 	
+		mPerc = 1 + ((mediumEndPerc-minValue)/(maxValue-minValue)*maxValue - backlash)/100; 
+		
+		createArc(Math.PI, lPerc*Math.PI, lowColor);
+		createArc(lPerc*Math.PI, mPerc*Math.PI, mediumColor);
+		createArc(mPerc*Math.PI, 0, highColor);
+	}
+	
+	function createArc(sPoint, ePoint, aColor){
 		var context = that.arcDiv.getContext('2d');
 		context.beginPath();		
-		context.arc(startingPoints, startingPoints, aRadius, sPoint, ePoint);
+		
+		context.arc(startingPoints, startingPoints - 8, sRadius - 8, sPoint, ePoint); // Eitan Rabinovich, Aug 18, 2014 - 12:28:25 PM
+		
 		context.lineWidth = lineWidth;
+
 		
 		// Eitan Rabinovich, Aug 14, 2014 - 11:01:55 AM
 		/*var grd=context.createLinearGradient(0,0,170,0);
@@ -419,7 +568,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 		grd.addColorStop(1,bColor); 
 		context.strokeStyle = grd;*/
 		// Eitan Rabinovich, Aug 14, 2014 - 11:02:18 AM
-
 		
 		context.strokeStyle = aColor;
 		context.stroke();
@@ -432,21 +580,8 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 		
 		if (this._alive){
 			return;
-		} else {
-			currentDiv = this.$().attr('id');
-			currentTable = currentDiv + "table";
-			this.gaugeDiv = document.createElement("canvas");
-			this.gaugeDiv1 = document.createElement("canvas");
-			this.arcDiv = document.createElement("canvas");
-
-			this.gaugeDiv.className = "sGauge";
-			this.gaugeDiv1.className = "sGauge";
-			this.arcDiv.className = "sGaugeArc";
-				
-			this.$().append($(this.gaugeDiv));
-			this.$().append($(this.gaugeDiv1));
-			this.$().append($(this.arcDiv));
-		
+		} else {			
+			createHtml();
 			this._alive = true;
 		}
 	};
@@ -458,8 +593,8 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 					  angle: 0.0,
 					  lineWidth: 0.0001,
 					  pointer: {
-					    length: 1,
-					    strokeWidth: 0.035,
+					    length: pointerLength,
+					    strokeWidth: pointerStroke,
 					    color: pointerColor
 					  },
 					  limitMax: 'false', 
@@ -467,43 +602,21 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 					};
 
 		var mainDiv = document.getElementById(currentDiv);
-
-		var divW = this.$().width();
-		var divH = this.$().height();
 		
-		if (divH > divW/2 || divH == divW/2) {
-			divH = divW/2;
-		} else {
-			divW = divH * 2;
-		}
+		settingObjectsSize();
 		
-		this.arcDiv.width = divW;
-		this.arcDiv.height = divH - (divH/100) * 8;
-		this.gaugeDiv.width = divW;
-		this.gaugeDiv.height = divH;
-		this.gaugeDiv1.width = divW;
-		this.gaugeDiv1.height = divH;
-		var startingPoints = divH;
-		var sRadius = startingPoints-lineWidth/2;	
-
 		var gauge = new Gauge(this.gaugeDiv).setOptions(optsa);
 		gauge.minValue = 0;
 		gauge.maxValue = maxValue;
 		gauge.animationSpeed = 32;
 		
-		if (dataResultCell == null || dataResultCell == "" || dataResultCell.data[0] == null){
-			actualValue = nearZero;
-		} else {
-			if (dataResultCell.data[0] > maxValue || dataResultCell.data[0] == maxValue){
-				actualValue = maxValue;
-			} else if (dataResultCell.data[0] < minValue || dataResultCell.data[0] == minValue){
-				actualValue = nearZero;
-			} else {
-				actualValue = (dataResultCell.data[0]-minValue)/(maxValue-minValue)*maxValue;
-			}
-		}
 		
-		actualValue = 100;//
+		if (hardCodedValue == 0 && dataResultCell != null){
+			actualValue = setActualValue(dataResultCell);
+		} else {
+			actualValue = setActualValue(hardCodedValue);
+		}
+
 		gauge.set(actualValue);
 
 	if (noOfNeedles > 1){
@@ -512,70 +625,37 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 					  angle: 0.0,
 					  lineWidth: 0.0001,
 					  pointer: {
-					    length: 1,
-					    strokeWidth: 0.035,
+					    length: pointer1Length,
+					    strokeWidth: pointer1Stroke,
 					    color: pointerColor1
 					  },
 					  limitMax: 'false', 
 					  strokeColor: '#E0E0E0'
 					};
 			
-			var gauge1 = new Gauge(this.gaugeDiv1).setOptions(opts1);
+			var gauge1 = new ZGauge(this.gaugeDiv1).setOptions(opts1);
 			gauge1.minValue = 0;
 			gauge1.maxValue = maxValue;
 			gauge1.animationSpeed = 32;
 			
-			if (dataResultCell1 == null || dataResultCell1 == "" || dataResultCell1.data[0] == null){
-				actualValue1 = nearZero;
+			if (hardCodedValue1 == 0 && dataResultCell1 != null){
+				actualValue1 = setActualValue(dataResultCell1);
 			} else {
-				if (dataResultCell1.data[0] > maxValue || dataResultCell1.data[0] == maxValue){
-					actualValue1 = maxValue;
-				} else if (dataResultCell1.data[0] < minValue || dataResultCell1.data[0] == minValue){
-					actualValue1 = nearZero;
-				} else {
-					actualValue1 = (dataResultCell1.data[0]-minValue)/(maxValue-minValue)*maxValue;
-				}
-				
+				actualValue1 = setActualValue(hardCodedValue1);
 			}
-			
-			actualValue1 = 120;//
+
 			gauge1.set(actualValue1);
 	}
 	
 	if (showScaling){		
-		this.valueTables = document.createElement("table");
-		this.valueTables.setAttribute("id", currentTable);
-		
-		this.valueTables.width = divW;
-		
-		this.tdMaxValue = document.createElement("td");
-		this.tdMinValue = document.createElement("td");
-		this.textMax = document.createTextNode(maxValue);
-		this.textMin = document.createTextNode(minValue);
-
-		this.valueTables.appendChild(this.tdMinValue);
-		this.valueTables.appendChild(this.tdMaxValue);
-		this.tdMaxValue.appendChild(this.textMax);
-		this.tdMinValue.appendChild(this.textMin);
-		this.$().append($(this.valueTables));
-		
-		this.valueTables.className = "valueTables";
-		this.tdMaxValue.className = "divMaxValue";
-		this.tdMinValue.className = "divMinValue";
-	}
+		setScaling();
+	};
 	
-		var lPerc = 1 + (1 - ((maxValue - lowEndPerc) * 1/(maxValue-minValue))) - backlash/100; 	
-		var mPerc = 1 + (1 - ((maxValue - mediumEndPerc) * 1/(maxValue-minValue))) - backlash/100; 
+		drawArc();
 		
-		createArc(startingPoints, sRadius, Math.PI, lPerc*Math.PI, lowColor);
-		createArc(startingPoints, sRadius, lPerc*Math.PI, mPerc*Math.PI, mediumColor);
-		createArc(startingPoints, sRadius, mPerc*Math.PI, 0, highColor);	
-		
-		// Eitan Rabinovich, Aug 14, 2014 - 11:19:15 AM -{
-		/*createArc(startingPoints, sRadius, Math.PI, lPerc*Math.PI, lowColor, mediumColor);
-		createArc(startingPoints, sRadius, lPerc*Math.PI, mPerc*Math.PI, mediumColor, highColor);
-		createArc(startingPoints, sRadius, mPerc*Math.PI, 0, highColor, highColor);*/
-		// Eitan Rabinovich, Aug 14, 2014 - 11:19:18 AM }-
+		this.gaugeDial.setAttribute("id", currentDial);
+		drawDial(currentDial, minValue, maxValue);
+		createPointerArc(startingPoints);
 		
 	};
 	
@@ -608,6 +688,22 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 			return dataResultCell1;
 		} else {
 			dataResultCell1 = value;
+			return this;
+		}
+	};
+	this.HardCodedValue = function(value) {
+		if (value === undefined) {
+			return hardCodedValue;
+		} else {
+			hardCodedValue = value;
+			return this;
+		}
+	};
+	this.HardCodedValue1 = function(value) {
+		if (value === undefined) {
+			return hardCodedValue1;
+		} else {
+			hardCodedValue1 = value;
 			return this;
 		}
 	};
@@ -675,6 +771,38 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 			return this;
 		}
 	};
+	this.PointerLength = function(value) {
+		if (value === undefined) {
+			return pointerLength;
+		} else {
+			pointerLength = value;
+			return this;
+		}
+	};
+	this.Pointer1Length = function(value) {
+		if (value === undefined) {
+			return pointer1Length;
+		} else {
+			pointer1Length = value;
+			return this;
+		}
+	};
+	this.PointerStroke = function(value) {
+		if (value === undefined) {
+			return pointerStroke;
+		} else {
+			pointerStroke = value;
+			return this;
+		}
+	};
+	this.Pointer1Stroke = function(value) {
+		if (value === undefined) {
+			return pointer1Stroke;
+		} else {
+			pointer1Stroke = value;
+			return this;
+		}
+	};
 	this.LowEndPerc = function(value) {
 		if (value === undefined) {
 			return lowEndPerc;
@@ -690,7 +818,39 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 			mediumEndPerc = value;
 			return this;
 		}
-	};	
+	};
+	this.NoOfTicks = function(value) {
+		if (value === undefined) {
+			return noOfTicks;
+		} else {
+			noOfTicks = value;
+			return this;
+		}
+	};
+	this.NoOfTicks1 = function(value) {
+		if (value === undefined) {
+			return noOfTicks1;
+		} else {
+			noOfTicks1 = value;
+			return this;
+		}
+	};
+	this.TicksColor = function(value) {
+		if (value === undefined) {
+			return ticksColor;
+		} else {
+			ticksColor = value;
+			return this;
+		}
+	};
+	this.TicksColor1 = function(value) {
+		if (value === undefined) {
+			return ticksColor1;
+		} else {
+			ticksColor1 = value;
+			return this;
+		}
+	};
 	this.Backlash = function(value) {
 		if (value === undefined) {
 			return backlash;
@@ -698,7 +858,49 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.sGauge", function() {
 			backlash = value;
 			return this;
 		}
+	};
+	
+	this.NoOfTickmarks = function(value) {
+		if (value === undefined) {
+			return noOfTickmarks;
+		} else {
+			noOfTickmarks = value;
+			return this;
+		}
 	};	
+	this.FontSizePerc = function(value) {
+		if (value === undefined) {
+			return fontSizePerc;
+		} else {
+			fontSizePerc = value;
+			return this;
+		}
+	};	
+	this.TickmarksColor = function(value) {
+		if (value === undefined) {
+			return tickmarksColor;
+		} else {
+			tickmarksColor = value;
+			return this;
+		}
+	};	
+	this.TicksRadius = function(value) {
+		if (value === undefined) {
+			return ticksRadius;
+		} else {
+			ticksRadius = value;
+			return this;
+		}
+	};	
+	this.TickmarksRadius = function(value) {
+		if (value === undefined) {
+			return tickmarksRadius;
+		} else {
+			tickmarksRadius = value;
+			return this;
+		}
+	};	
+	
 });	
 
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
@@ -853,7 +1055,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 
 	var that = this;
-	var dataR = null; var meta_data = null;
+	var dataR = null; var meta_data = null, lColor= null, iColor = null, uOM = null, noDecimal = null, aResize = null;
 	this.mDonut = null;
 	
 	this.init = function() {					  
@@ -866,9 +1068,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 		} else {
 			currentDiv = this.$().attr('id');
 	
-			/*this.$().html('<div id="' + currentDiv + '" style="width:100%;height:100%;margin:20px auto 0 auto;">' +
-						  '</div>');
-			*/
 			this.mDonut = document.createElement("div");
 			
 			$(this.mDonut).css({
@@ -891,17 +1090,21 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 		
 		var pp = new Array();
 		
-		if (meta_data != null){
-			for (var i=0;i<meta_data.dimensions[0].members.length;i++){
-				arrayOfLabels.push(meta_data.dimensions[0].members[i].text);
-				arrayOfValues.push(dataR.data[i]);
-				pp.push("value:" + dataR.data[i] + ", " + "label: " + meta_data.dimensions[0].members[i].text + "}");
+		if (meta_data != null || meta_data.dimension != null){
+			for (var i=0; i < meta_data.dimensions[0].members.length; i++){			
+				var new_pp = {
+								//value : dataR.data[i],
+								value : dataR.data[i].toFixed(noDecimal),
+								label : meta_data.dimensions[0].members[i].text
+							};
+						pp.push(new_pp);
 				
-				/*pp.push(new Array());
-				pp[i].push("value:" + dataR.data[i]);
-				pp[i].push("label:" + meta_data.dimensions[0].members[i].text);*/
-			}
-			var  tt = pp.split(",");
+			}	
+			//Morris.Donut({ element: currentDiv, data: pp, formatter: function (x) { return x + "%"} });
+			var dColors = [];
+			dColors.push(iColor);
+			//Morris.Donut({ element: currentDiv, data: pp, colors: dColors, formatter: function (x) { return x + uOM} });
+			Morris.Donut({ element: currentDiv, data: pp, labelColor: lColor, colors: dColors, resize: aResize, formatter: function (x) { return x + uOM} });
 		} else {		
 			Morris.Donut({
 				element: currentDiv,
@@ -911,7 +1114,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 					{value: 10, label: 'baz'},
 					{value: 5, label: 'A really really long label'}
 				  ],
-				  //data: pp,
 				  formatter: function (x) { return x + "%"}
 			});
 		}
@@ -930,6 +1132,48 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 			return meta_data; 
 		} else { 
 			meta_data = value; 
+			return this; 
+		}
+	};
+	this.IColor = function(value) {
+		if (value === undefined) { 
+			return iColor; 
+		} else { 
+			iColor = value; 
+			return this; 
+		}
+	};
+	this.LColor = function(value) {
+		if (value === undefined) { 
+			return lColor; 
+		} else { 
+			lColor = value; 
+			return this; 
+		}
+	};
+	
+	
+	this.UOM = function(value) {
+		if (value === undefined) { 
+			return uOM; 
+		} else { 
+			uOM = value; 
+			return this; 
+		}
+	};
+	this.NoDecimal = function(value) {
+		if (value === undefined) { 
+			return noDecimal; 
+		} else { 
+			noDecimal = value; 
+			return this; 
+		}
+	};
+	this.AResize = function(value) {
+		if (value === undefined) { 
+			return aResize; 
+		} else { 
+			aResize = value; 
 			return this; 
 		}
 	};

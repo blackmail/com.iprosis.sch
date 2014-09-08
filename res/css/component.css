@@ -32,7 +32,7 @@
 	position: relative;
 }
 
-.sGaugeArc, .sGauge{
+.sGaugeArc, .sGauge, .sGaugeDial{
 	/*width: 200px;
 	height: 100px;*/
 	position: absolute;
@@ -42,8 +42,12 @@
 .sGaugeArc{
 	z-index: 0;
 }
-.sGauge{
+.sGaugeDial{
 	z-index: 1;
+	top: -10px;
+}
+.sGauge{
+	z-index: 2;
 }
 #MinValue, #MaxValue{
 	font-family: Cambria;

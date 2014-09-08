@@ -122,10 +122,14 @@
 		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
 		tooltip="Gauge" databound="true" group="iprosis">
 
+		<jsInclude>res/js/CanvasDial.js</jsInclude>
 		<jsInclude>res/js/gauge.min.js</jsInclude>
-		<!-- <jsInclude>res/js/gauge.js</jsInclude> -->
+		<jsInclude>res/js/Zgauge.min.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
+		
+		
+		
 		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
 		<property id="MinValue" title="Minimum Value" type="int"></property>
 		<property id="MaxValue" title="Maximum Value" type="int"></property>		
@@ -139,35 +143,65 @@
 			group="DataBinding">
 		</property>
 		
-		<property id="LowColor" title="Low Color" type="Color"></property>
-		<property id="MediumColor" title="Medium Color" type="Color"></property>
-		<property id="HighColor" title="High Color" type="Color"></property>
-		<property id="ShowScaling" title="Show Scaling Values" type="boolean"></property>
 		<property id="NoOfNeedles" title="Number of Needles" type="int" >
 			<possibleValue>1</possibleValue>
 			<possibleValue>2</possibleValue>
 		</property>
+		
+		<property id="HardCodedValue" title="Hard Coded Value" type="float" tooltip="This value will overwrite the Data Result Cell if Selected"></property>
 		<property id="PointerColor" title="Pointer Color" type="Color"></property>
+		<property id="PointerLength" title="Pointer Length" type="float"></property>
+		<property id="PointerStroke" title="Pointer Stroke" type="float"></property>
+		<property id="HardCodedValue1" title="Hard Coded Value 1" type="float" tooltip="This value will overwrite the Data Result Cell 1 if Selected"></property>
 		<property id="PointerColor1" title="Pointer Color1" type="Color"></property>
-		<property id="LowEndPerc" title="Low Color End Percent" type="int"></property>
-		<property id="MediumEndPerc" title="Medium Color End Percent" type="int"></property>
-		<property id="Backlash" title="Backlash" type="float"></property>
+		<property id="Pointer1Length" title="Pointer 1 Length" type="float"></property>
+		<property id="Pointer1Stroke" title="Pointer Stroke1" type="float"></property>		
+		<property id="LowEndPerc" title="Low Color End Value" type="float"></property>
+		<property id="MediumEndPerc" title="Medium Color End Value" type="float"></property>		
+		<property id="LowColor" title="Low Color" type="Color"></property>
+		<property id="MediumColor" title="Medium Color" type="Color"></property>
+		<property id="HighColor" title="High Color" type="Color"></property>
+		<property id="ShowScaling" title="Show Minimum and Maximum Values" type="boolean" tooltip="Show Minimum and Maximum Values beneath the arc"></property>
+		<property id="NoOfTickmarks" title="Number of Tickmarks" type="int"></property>
+		<property id="TickmarksColor" title="Tickmarks Color" type="Color"></property>
+		<property id="FontSizePerc" title="Font Size Percent" type="int"></property>
+		<property id="TickmarksRadius" title="Tickmarks Radius" type="int"></property>		
+		<property id="NoOfTicks" title="Number Of Ticks" type="int"></property>
+		<property id="TicksColor" title="Ticks Color" type="Color"></property>
+		<property id="NoOfTicks1" title="Number Of Ticks 1" type="int"></property>
+		<property id="TicksColor1" title="Ticks 1 Color" type="Color"></property>
+		<property id="TicksRadius" title="Ticks Radius" type="int"></property>
+		
+		<property id="Backlash" title="BackLash" type="float"></property>
+		
 		<initialization>
 			<defaultValue property="WIDTH">200</defaultValue>
 			<defaultValue property="HEIGHT">100</defaultValue>			
 			<defaultValue property="MinValue">0</defaultValue>
-			<defaultValue property="MaxValue">200</defaultValue>
+			<defaultValue property="MaxValue">100</defaultValue>
 			<defaultValue property="LineWidth">30</defaultValue>
 			<defaultValue property="LowColor">#FF0000</defaultValue>
 			<defaultValue property="MediumColor">#FF8000</defaultValue>
 			<defaultValue property="HighColor">#00FF00</defaultValue>
 			<defaultValue property="noOfNeedles">1</defaultValue>
-			
-			<defaultValue property="PointerColor">#00000</defaultValue>
-			<defaultValue property="PointerColor1">#666666</defaultValue>
+			<defaultValue property="PointerColor">#666666</defaultValue>
+			<defaultValue property="PointerColor1">#C0C0C0</defaultValue>			
+			<defaultValue property="PointerLength">1</defaultValue>
+			<defaultValue property="Pointer1Length">0.7</defaultValue>
+			<defaultValue property="PointerStroke">0.035</defaultValue>
+			<defaultValue property="Pointer1Stroke">0.06</defaultValue>
 			<defaultValue property="LowEndPerc">70</defaultValue>
 			<defaultValue property="MediumEndPerc">95</defaultValue>
-			<defaultValue property="Backlash">0.06</defaultValue>
+			<defaultValue property="NoOfTicks">20</defaultValue>
+			<defaultValue property="TicksColor">#333333</defaultValue>
+			<defaultValue property="NoOfTicks1">100</defaultValue>
+			<defaultValue property="TicksColor">#666666</defaultValue>
+			<defaultValue property="NoOfTickmarks">10</defaultValue>
+			<defaultValue property="FontSizePerc">15</defaultValue>
+			<defaultValue property="TickmarksColor">#333333</defaultValue>
+			<defaultValue property="TicksRadius">80</defaultValue>
+			<defaultValue property="TickmarksRadius">100</defaultValue>
+			<defaultValue property="ShowScaling">false</defaultValue>
 		</initialization>
 	</component>
 	<component id="iKPI" title="iProsis KPI Tile" icon="res/icoFree.png"
@@ -222,10 +256,17 @@
 				tooltip="Data for chart"
 				group="DataBinding">
 		</property>
+		<property type="Color" title="Color" id="IColor"></property>
+		<property type="Color" title="Label Color" id="LColor"></property>
+		<property type="String" title="Unit of Measure" id="UOM"></property>
+		<property type="int" title="Number of Decimal Places" id="NoDecimal"></property>
+		<property type="boolean" title="Auto Resize (Low Performance if True)" id="AResize"></property>
 	
 	
 		<initialization>	
-			<!-- <defaultValue property="PBackground">#C6EFCE</defaultValue> -->
+			<defaultValue property="IColor">#0B62A4</defaultValue>
+			<defaultValue property="LColor">#333333</defaultValue>
+			<defaultValue property="AResize">false</defaultValue>
 		</initialization>
 	</component>		
 	

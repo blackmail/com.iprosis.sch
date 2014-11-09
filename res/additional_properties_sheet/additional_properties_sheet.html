@@ -1,4 +1,11 @@
 <html>
+	
+	<style>
+		tr.csTr td{
+			border-bottom: 1px solid black;
+		}
+	</style>
+	
 	<head>
 		<title>Colored Box Property Sheet</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,25 +13,45 @@
 		<script src="additional_properties_sheet.js"></script>
 	</head>
 	<script>
-		new com.iprosis.sch.iGaugePropertyPage();
+		new com.iprosis.sch.sGaugePropertyPage();
 	</script>
 	<body>
 		<form id="form">
 			<fieldset>
-				<legend>Gauge Properties</legend>
+				<legend>Needles Properties</legend>
 				<table>
-					<tr>
-						<td>Gauge Type</td>
+					<tr class="csTr">
+						<td>Number of Needles</td>
+						<td></td>
 						<td>
-							<select id="gaugeType">
-							  <option value="Donut">Donut</option>
-							  <option value="Gauge">Gauge</option>							  
+							<select id="NoOfNeedles">
+							  <option value="1">1</option>
+							  <option value="2">2</option>							  
 							</select>
-							<input type="submit" value="Apply">
 						</td>
 					</tr>
+					<tr>
+						<td>Hard Coded Value</td>
+						<td>
+							<input type="checkbox" id="chkHardCodedValue" value="0">
+						</td>
+						<td>
+							<input type="text" id="HardCodedValue">
+						</td>
+					</tr>
+					<tr class="csTr" id="trHardCodedValue2">
+						<td>Hard Coded Value 2</td>
+						<td>
+							<input type="checkbox" id="chkHardCodedValue2" value="0">
+						</td>
+						<td>
+							<input type="text" id="HardCodedValue2">
+						</td>
+					</tr>
+					
 				</table>
 			</fieldset>
+			<input type="submit" value="Apply">
 		</form>
 	</body>
 </html>

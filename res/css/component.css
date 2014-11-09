@@ -32,7 +32,7 @@
 	position: relative;
 }
 
-.sGaugeArc, .sGauge, .sGaugeDial{
+.sGaugeArc, .sGauge, .sGaugeDial, .sPointerArc, .sMidArc{
 	/*width: 200px;
 	height: 100px;*/
 	position: absolute;
@@ -46,8 +46,15 @@
 	z-index: 1;
 	top: -10px;
 }
-.sGauge{
+
+.sMidArc{
 	z-index: 2;
+}
+.sGauge{
+	z-index: 3;
+}
+.sPointerArc{
+	z-index: 4;
 }
 #MinValue, #MaxValue{
 	font-family: Cambria;

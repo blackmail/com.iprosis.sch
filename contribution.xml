@@ -5,39 +5,9 @@
 	vendor="iProsis"
 	id="com.iprosis.sch">
 	<group title="iProsis" id="iprosis" />
-	<component id="iGauge" title="iProsis Gauge" icon="res/icoFree.png"
-		handlerType="div"
-		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		tooltip="Gauge" databound="true" group="iprosis">
-
-		<jsInclude>res/js/gauge.min.js</jsInclude>
+	<component id="dateOffset" title="iProsis Date Offset" icon="res/icon.png" handlerType="div" group="iprosis">														
 		<jsInclude>res/js/component.js</jsInclude>
-		<cssInclude>res/css/component.css</cssInclude>
-		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
-		<property id="minValue" title="Minimum Value" type="int"></property>
-		<property id="maxValue" title="Maximum Value" type="int"></property>
-		<!--  <property id="gType" title="Gauge Type" type="int" visible="false"></property>-->
-		<property id="gType" title="Gauge Type" type="String">
-			<possibleValue>Donut</possibleValue>
-			<possibleValue>Gauge</possibleValue>
-		</property>
-		<property id="dataResultCell" title="ResultCell" type="ResultCell"
-			tooltip="Holds a reference to a result cell"
-			group="DataBinding">
-		</property>
-		<initialization>
-			<defaultValue property="WIDTH">300</defaultValue>
-			<defaultValue property="HEIGHT">70</defaultValue>
-			<defaultValue property="gType">Gauge</defaultValue>
-			<defaultValue property="minValue">0</defaultValue>
-			<defaultValue property="maxValue">100</defaultValue>
-		</initialization>
-	</component>
-	<component id="dateOffset" title="iProsis Date Offset" icon="res/icon.png" handlerType="div" group="iprosis">						
-								
-		<jsInclude>res/js/component.js</jsInclude>
-		<cssInclude>res/css/component.css</cssInclude>
-		
+		<cssInclude>res/css/component.css</cssInclude>		
 		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
 		<property id="offDays" title="Offset Days" type="int"></property>
 		<property id="fixedDate" title="Fixed Date" type="String" visible="false"></property>
@@ -46,13 +16,11 @@
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>
-	<component id="totemTicker" title="iProsis Totem Ticker" icon="res/icon.png" handlerType="div" group="iprosis">
-								
+	<component id="totemTicker" title="iProsis Totem Ticker" icon="res/icon.png" handlerType="div" group="iprosis">								
 		<jsInclude>res/js/jquery.totemticker.min.js</jsInclude>								
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/totem.css</cssInclude>
-		<cssInclude>res/css/component.css</cssInclude>
-		
+		<cssInclude>res/css/component.css</cssInclude>		
 		<property id="onclick1" title="On Click 1" type="ScriptText" group="Events"></property>
 		<property id="onclick2" title="On Click 2" type="ScriptText" group="Events"></property>
 		<property id="onclick3" title="On Click 3" type="ScriptText" group="Events"></property>
@@ -78,11 +46,9 @@
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>
-	<component id="horizontalScroller" title="iProsis Horizontal Scroller" icon="res/slider-icon.png" handlerType="div" group="iprosis">						
-								
+	<component id="horizontalScroller" title="iProsis Horizontal Scroller" icon="res/slider-icon.png" handlerType="div" group="iprosis">														
 		<jsInclude>res/js/component.js</jsInclude>
-		<cssInclude>res/css/component.css</cssInclude>
-		
+		<cssInclude>res/css/component.css</cssInclude>		
 		<property id="onChange" title="On Click" type="ScriptText" group="Events" />
 		<property id="sdValue" title="Selected Value" type="String" visible="false"></property>
 		<property id="sValue" title="Default Value" type="int"></property>
@@ -93,15 +59,13 @@
 			<defaultValue property="HEIGHT">30</defaultValue>			
 		</initialization>
 	</component>	
-	<component id="countUp" title="iProsis CountUp" icon="res/counter.png" handlerType="div" databound="true" group="iprosis">						
-								
+	<component id="countUp" title="iProsis CountUp" icon="res/counter.png" handlerType="div" databound="true" group="iprosis">														
 		<jsInclude>res/js/jshashtable.js</jsInclude>
 		<jsInclude>res/js/jquery.numberformatter-1.2.2.min.js</jsInclude>	
 		<jsInclude>res/js/jquery.easing.1.3.js</jsInclude>	
 		<jsInclude>res/js/jquery.flipCounter.1.2.pack.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>		
-		<cssInclude>res/css/component.css</cssInclude>
-		
+		<cssInclude>res/css/component.css</cssInclude>		
 		<property id="onclick" title="On Click" type="ScriptText" group="Events" />				
 		<property id="CStart" title="Start Value" type="int"></property>
 		<property id="CDuration" title="Duration (in ms)" type="int"></property>
@@ -115,25 +79,18 @@
 			<defaultValue property="HEIGHT">60</defaultValue>			
 		</initialization>
 	</component>
-	
-	
-	<component id="sGauge" title="iProsis Gauge for SMLT" icon="res/icoFree.png"
+	<component id="iGauge" title="iProsis Gauge for SMLT" icon="res/icoFree.png"
 		handlerType="div"
-		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
 		tooltip="Gauge" databound="true" group="iprosis">
-
 		<jsInclude>res/js/CanvasDial.js</jsInclude>
 		<jsInclude>res/js/gauge.min.js</jsInclude>
 		<jsInclude>res/js/Zgauge.min.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
-		
-		
-		
 		<property id="onclick" title="On Click" type="ScriptText" group="Events" />
 		<property id="MinValue" title="Minimum Value" type="int"></property>
 		<property id="MaxValue" title="Maximum Value" type="int"></property>		
-		<property id="LineWidth" title="Line Width" type="int"></property>		
+		<property id="ShowScaling" title="Show Minimum and Maximum Values" type="boolean" tooltip="Show Minimum and Maximum Values beneath the arc"></property>				
 		<property id="DataResultCell" title="ResultCell" type="ResultCell"
 			tooltip="Holds a reference to a result cell"
 			group="DataBinding">
@@ -141,42 +98,42 @@
 		<property id="DataResultCell1" title="ResultCell1" type="ResultCell"
 			tooltip="Holds a reference to a result cell"
 			group="DataBinding">
-		</property>
-		
+		</property>		
 		<property id="NoOfNeedles" title="Number of Needles" type="int" >
 			<possibleValue>1</possibleValue>
 			<possibleValue>2</possibleValue>
 		</property>
-		
-		<property id="HardCodedValue" title="Hard Coded Value" type="float" tooltip="This value will overwrite the Data Result Cell if Selected"></property>
-		<property id="PointerColor" title="Pointer Color" type="Color"></property>
-		<property id="PointerLength" title="Pointer Length" type="float"></property>
-		<property id="PointerStroke" title="Pointer Stroke" type="float"></property>
-		<property id="HardCodedValue1" title="Hard Coded Value 1" type="float" tooltip="This value will overwrite the Data Result Cell 1 if Selected"></property>
-		<property id="PointerColor1" title="Pointer Color1" type="Color"></property>
-		<property id="Pointer1Length" title="Pointer 1 Length" type="float"></property>
-		<property id="Pointer1Stroke" title="Pointer Stroke1" type="float"></property>		
+		<property id="HardCodedValue" title="Hard Coded Value" type="float" tooltip="This value overwrites the Data Result Cell if Selected"></property>
+		<property id="UseHardCodedValue" title="Use Hard Coded Value" type="boolean"></property>		
+		<property id="HardCodedValue1" title="Hard Coded Value 1" type="float" tooltip="This value overwrites the Data Result Cell 1 if Selected"></property>
+		<property id="ColorArcEnd" title="Color Arc End" type="float"></property>
+		<property id="LineWidth" title="Color Arc Width" type="int"></property>
 		<property id="LowEndPerc" title="Low Color End Value" type="float"></property>
 		<property id="MediumEndPerc" title="Medium Color End Value" type="float"></property>		
+		<property id="NoOfTickmarks" title="Number of Tickmarks" type="int"></property>
+		<property id="FontSizePerc" title="Font Size Percent" type="int"></property>
+		<property id="TickmarksRadius" title="Tickmarks Radius" type="int"></property>		
+		<property id="NoOfTicks" title="Number Of Main Ticks" type="int"></property>
+		<property id="NoOfTicks1" title="Number Of Sub Ticks" type="int"></property>
+		<property id="TicksRadius" title="Ticks Radius" type="int"></property>
+		<property id="PointerLength" title="Pointer Length" type="float"></property>
+		<property id="PointerStroke" title="Pointer Stroke" type="float"></property>
+		<property id="Pointer1Length" title="Pointer 1 Length" type="float"></property>
+		<property id="Pointer1Stroke" title="Pointer Stroke1" type="float"></property>	
+		<property id="PointerColor" title="Pointer Color" type="Color"></property>
+		<property id="PointerColor1" title="Pointer Color1" type="Color"></property>	
 		<property id="LowColor" title="Low Color" type="Color"></property>
 		<property id="MediumColor" title="Medium Color" type="Color"></property>
 		<property id="HighColor" title="High Color" type="Color"></property>
-		<property id="ShowScaling" title="Show Minimum and Maximum Values" type="boolean" tooltip="Show Minimum and Maximum Values beneath the arc"></property>
-		<property id="NoOfTickmarks" title="Number of Tickmarks" type="int"></property>
 		<property id="TickmarksColor" title="Tickmarks Color" type="Color"></property>
-		<property id="FontSizePerc" title="Font Size Percent" type="int"></property>
-		<property id="TickmarksRadius" title="Tickmarks Radius" type="int"></property>		
-		<property id="NoOfTicks" title="Number Of Ticks" type="int"></property>
-		<property id="TicksColor" title="Ticks Color" type="Color"></property>
-		<property id="NoOfTicks1" title="Number Of Ticks 1" type="int"></property>
-		<property id="TicksColor1" title="Ticks 1 Color" type="Color"></property>
-		<property id="TicksRadius" title="Ticks Radius" type="int"></property>
-		
+		<property id="TicksColor" title="Main Ticks Color" type="Color"></property>
+		<property id="TicksColor1" title="Sub Ticks Color" type="Color"></property>
+		<!-- <property id="PointerDomeColor" title="Pointer Dome Color" type="Color"></property> -->
+		<property id="MidArcColor" title="Middle Arc Color" type="Color"></property>
 		<property id="Backlash" title="BackLash" type="float"></property>
-		
 		<initialization>
-			<defaultValue property="WIDTH">200</defaultValue>
-			<defaultValue property="HEIGHT">100</defaultValue>			
+			<defaultValue property="WIDTH">400</defaultValue>
+			<defaultValue property="HEIGHT">200</defaultValue>			
 			<defaultValue property="MinValue">0</defaultValue>
 			<defaultValue property="MaxValue">100</defaultValue>
 			<defaultValue property="LineWidth">30</defaultValue>
@@ -197,11 +154,14 @@
 			<defaultValue property="NoOfTicks1">100</defaultValue>
 			<defaultValue property="TicksColor">#666666</defaultValue>
 			<defaultValue property="NoOfTickmarks">10</defaultValue>
-			<defaultValue property="FontSizePerc">15</defaultValue>
+			<defaultValue property="FontSizePerc">10</defaultValue>
 			<defaultValue property="TickmarksColor">#333333</defaultValue>
 			<defaultValue property="TicksRadius">80</defaultValue>
-			<defaultValue property="TickmarksRadius">100</defaultValue>
+			<defaultValue property="TickmarksRadius">70</defaultValue>
 			<defaultValue property="ShowScaling">false</defaultValue>
+			<defaultValue property="ColorArcEnd">100</defaultValue>
+			<!-- <defaultValue property="PointerDomeColor">#666666</defaultValue>  -->
+			<defaultValue property="MidArcColor">#888888</defaultValue>
 		</initialization>
 	</component>
 	<component id="iKPI" title="iProsis KPI Tile" icon="res/icoFree.png"
@@ -236,11 +196,8 @@
 			<defaultValue property="Value1FS">14</defaultValue>
 			<defaultValue property="Value2FS">24</defaultValue>
 			<defaultValue property="Value3FS">14</defaultValue>
-			
 		</initialization>
 	</component>
-	
-	
 	<component id="iDonut" title="iProsis Donut" icon="res/icoFree.png"
 		handlerType="div"
 		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
@@ -262,14 +219,88 @@
 		<property type="int" title="Number of Decimal Places" id="NoDecimal"></property>
 		<property type="boolean" title="Auto Resize (Low Performance if True)" id="AResize"></property>
 	
-	
 		<initialization>	
 			<defaultValue property="IColor">#0B62A4</defaultValue>
 			<defaultValue property="LColor">#333333</defaultValue>
 			<defaultValue property="AResize">false</defaultValue>
 		</initialization>
-	</component>		
+	</component>
+	
+	<component id="iconToolTip" title="iProsis Icon Tool Tip" icon="res/callOut.png"
+		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+		tooltip="iProsis Icon Tool Tip" databound="false" group="iprosis">
+		<jsInclude>res/js/opentip-jquery.min.js</jsInclude>
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/opentip.css</cssInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		<property type="String" title="Icon Code" id="IconCode"></property>
+		<property type="Color" title="Icon Color" id="IconColor"></property>
+		<property type="int" title="Icon Size" id="IconSize"></property>
+		<property type="String" title="Icon ToolTip Text" id="IconToolTipText"></property>
+		<property type="String" title="Icon ToolTip Position" id="IconToolTipPosition">
+			<possibleValue>left</possibleValue>
+			<possibleValue>center</possibleValue>
+			<possibleValue>right</possibleValue>			
+			<possibleValue>top</possibleValue>
+			<possibleValue>middle</possibleValue>
+			<possibleValue>bottom</possibleValue>			
+			<possibleValue>top left</possibleValue>
+			<possibleValue>bottom left</possibleValue>
+			<possibleValue>top right</possibleValue>
+			<possibleValue>bottom right</possibleValue>
+		</property>
+		<property type="String" title="Icon ToolTip Style" id="IconToolTipStyle">			
+			<possibleValue>alert</possibleValue>
+			<possibleValue>dark</possibleValue>			
+			<possibleValue>glass</possibleValue>
+			<possibleValue>standard</possibleValue>
+		</property>
+		<initialization>	
+			<defaultValue property="IconCode">e19b</defaultValue>
+			<defaultValue property="IconColor">#666666</defaultValue>			
+			<defaultValue property="IconToolTipText">Tool tip</defaultValue>
+			<defaultValue property="IconToolTipPosition">top right</defaultValue>
+			<defaultValue property="IconToolTipStyle">glass</defaultValue>
+		</initialization>			
+	</component>
 	
 	
-			
+		<component id="circliful" title="iProsis circliful" icon="res/circle.png"
+		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+		tooltip="iProsis circliful" databound="false" group="iprosis">
+		<jsInclude>res/js/jquery.circliful.min.js</jsInclude>
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/jquery.circliful.css</cssInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		<property type="int" title="Start Degree" id="Startdegree"></property>
+		<property type="int" title="Dimension" id="Dimension"></property>
+		<property type="int" title="Data Width" id="DWidth"></property>
+		<property type="int" title="Circle Width" id="CWidth"></property>
+		<property type="float" title="Value" id="DValue"></property>
+		<property type="String" title="Info" id="Info"></property>
+		<property type="int" title="Value Font Size" id="VFontsize"></property>
+		<property type="int" title="Info Font Size" id="IFontsize"></property>
+		<property type="Color" title="Color of Value Text" id="VColor"></property>
+		<property type="Color" title="Color of Info Text" id="IColor"></property>
+		<property type="String" title="Unit of Measure" id="Uom"></property>
+		<property type="Color" title="Foreground color" id="Fgcolor"></property>
+		<property type="Color" title="Background Color" id="Bgcolor"></property>
+		
+		<initialization>	
+			<defaultValue property="Startdegree">180</defaultValue>
+			<defaultValue property="DWidth">30</defaultValue>			
+			<defaultValue property="CWidth">15</defaultValue>			
+			<defaultValue property="DValue"></defaultValue>
+			<defaultValue property="Info">New Clients</defaultValue>
+			<defaultValue property="VFontsize">38</defaultValue>
+			<defaultValue property="IFontsize">38</defaultValue>
+			<defaultValue property="VColor">#333333</defaultValue>
+			<defaultValue property="IColor">#999999</defaultValue>
+			<defaultValue property="Uom">%</defaultValue>
+			<defaultValue property="Fgcolor">#61a9dc</defaultValue>
+			<defaultValue property="Bgcolor">#eee</defaultValue>
+		</initialization>	
+		</component>
 </sdkExtension>

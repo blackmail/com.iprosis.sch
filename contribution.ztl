@@ -1,20 +1,3 @@
-class com.iprosis.sch.iGauge extends Component {
-	/* Same method, returns a sample value */
-	int sampleMethod(/* sample argument */ String foo) {*
-		return 1;
-	*}
-
-	/* Returns the current color of the box */
-	String getColor() {*
-		return this.color;
-	*}
-
-	/* Sets the current color of the box */
-	void setColor(/* the new color */ String newColor) {*
-		this.color = newColor;
-	*}
-}
-
 class com.iprosis.sch.dateOffset extends Component {
 	String getDateAsText(){*		
 		return this.FixedDate;
@@ -44,5 +27,4 @@ class com.iprosis.sch.sGauge extends Component {
 	void setSelectedValue(ResultCell selectedValue){*
 		this.DataResultCell = selectedValue;
 	*}
-
 }

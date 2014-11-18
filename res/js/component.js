@@ -1,8 +1,7 @@
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.dateOffset", function() {
 	
 	var that = this;
-	var daysOff = null;	
-	var fixedDateText = null;
+	var daysOff = null, fixedDateText = null;
 	this._alive = false;
 	
 	function oDays(daysOff){
@@ -40,8 +39,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.dateOffset", function()
 			daysOff = value;
 			return this;
 		}						
-	};
-		
+	};		
 	this.fixedDate = function(value) {
 		if (value === undefined) {			
 			return fixedDateText;			
@@ -49,7 +47,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.dateOffset", function()
 			return this;
 		}
 	};
-	
 });
 
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.totemTicker", function() {
@@ -159,8 +156,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.horizontalScroller", fu
     		hsValue = value;  
     		return this;  
     	}       
-    };
-    
+    };    
     this.sMin = function(value) {  
     	if (value === undefined) {  
     		return hsMin = 0;  
@@ -168,8 +164,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.horizontalScroller", fu
     		hsMin = value;  
     		return this;  
     	}       
-    };
-    
+    };    
     this.sMax = function(value) {  
     	if (value === undefined) {  
     		return hsMax = 100;  
@@ -177,8 +172,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.horizontalScroller", fu
     		hsMax = value;  
     		return this;  
     	}       
-    };
-    
+    };    
     this.sdValue = function(value){        
 		if(value===undefined) {    
 			return returnedValue;   
@@ -230,7 +224,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.countUp", function() {
 				}
 			);				
 	};
-	
+
 	this.CStart = function(value) {  
 		if (value === undefined) {  
 			return cStart = 0;  
@@ -239,7 +233,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.countUp", function() {
 	    	return this;  
 	    }       
 	};
-	
 	this.CEnd = function(value) {  
 		if (value === undefined) {  
 			return cEnd;  
@@ -247,8 +240,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.countUp", function() {
 	    	cEnd = value;  
 	    	return this;  
 	    }       
-	};
-	
+	};	
 	this.CDuration = function(value) {  
 		if (value === undefined) {  
 			return cDuration;  
@@ -428,14 +420,11 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 	}
 	
 	function drawArc(){
-		// Eitan Rabinovich, Sep 17, 2014 - 12:37:20 PM -{
 		lowEndPerc = Math.max(lowEndPerc, minValue);
-		lowEndPerc = Math.min(lowEndPerc, maxValue);
-		
+		lowEndPerc = Math.min(lowEndPerc, maxValue);		
 		mediumEndPerc = Math.max(mediumEndPerc, lowEndPerc);
 		mediumEndPerc = Math.min(mediumEndPerc, maxValue);
-		// Eitan Rabinovich, Sep 17, 2014 - 12:37:20 PM }-
-		
+
 		lPerc = 1 + ((lowEndPerc-minValue)/(maxValue-minValue)*maxValue - backlash)/100; 	
 		mPerc = 1 + ((mediumEndPerc-minValue)/(maxValue-minValue)*maxValue - backlash)/100; 
 		
@@ -481,7 +470,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		gauge.maxValue = maxValue;
 		gauge.animationSpeed = 32;
 		
-		
 		if (hardCodedValue == 0 && dataResultCell != null){
 			actualValue = setActualValue(dataResultCell);
 		} else {
@@ -490,43 +478,42 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 
 		gauge.set(actualValue);
 
-	if (noOfNeedles > 1){
-			var opts1 = {
-					  lines: 12,
-					  angle: 0.0,
-					  lineWidth: 0.0001,
-					  pointer: {
-					    length: pointer1Length,
-					    strokeWidth: pointer1Stroke,
-					    color: pointerColor1
-					  },
-					  limitMax: 'false', 
-					  strokeColor: '#E0E0E0'
-					};
-			
-			var gauge1 = new ZGauge(this.gaugeDiv1).setOptions(opts1);
-			gauge1.minValue = 0;
-			gauge1.maxValue = maxValue;
-			gauge1.animationSpeed = 32;
-			
-			if (hardCodedValue1 == 0 && dataResultCell1 != null){
-				actualValue1 = setActualValue(dataResultCell1);
-			} else {
-				actualValue1 = setActualValue(hardCodedValue1);
-			}
-
-			gauge1.set(actualValue1);
-	}
+		if (noOfNeedles > 1){
+				var opts1 = {
+						  lines: 12,
+						  angle: 0.0,
+						  lineWidth: 0.0001,
+						  pointer: {
+						    length: pointer1Length,
+						    strokeWidth: pointer1Stroke,
+						    color: pointerColor1
+						  },
+						  limitMax: 'false', 
+						  strokeColor: '#E0E0E0'
+						};
+				
+				var gauge1 = new ZGauge(this.gaugeDiv1).setOptions(opts1);
+				gauge1.minValue = 0;
+				gauge1.maxValue = maxValue;
+				gauge1.animationSpeed = 32;
+				
+				if (hardCodedValue1 == 0 && dataResultCell1 != null){
+					actualValue1 = setActualValue(dataResultCell1);
+				} else {
+					actualValue1 = setActualValue(hardCodedValue1);
+				}
 	
-	if (showScaling){		
-		setScaling();
-	};
-	
+				gauge1.set(actualValue1);
+		}
+		
+		if (showScaling){		
+			setScaling();
+		};
+		
 		drawArc();				
 		this.gaugeDial.setAttribute("id", currentDial);
 		drawDial(currentDial, minValue, maxValue);
 		createMidArc();
-
 	};
 	
 	this.MinValue = function(value) {
@@ -815,8 +802,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 		$("#" + currentDiv).css("background", bGColor);
 		$("#" + currentTitle).css("color", fColor);
 		$("#" + currentPerc).css("color", fColor);
-		$("#" + currentValue).css("color", fColor);
-		
+		$("#" + currentValue).css("color", fColor);		
 		$("#" + currentPerc).css({"text-align":"center", "font-weight":"bold"}); 
 		$("#" + currentTitle, "#" + currentValue).css("text-align", "center"); 
 		$("#" + currentTitle).css("font-size", value1FS);
@@ -869,7 +855,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	
 	this.SelectedValue2 = function(value) {
 		if (value === undefined) {
 			return selectedValue2;
@@ -878,7 +863,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	
 	this.SelectedValue3 = function(value) {
 		if (value === undefined) {
 			return selectedValue3;
@@ -887,7 +871,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	
 	this.NBgCol = function(value) {
 		if (value === undefined) {
 			return nBgCol;
@@ -896,7 +879,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-
 	this.NFCol = function(value) {
 		if (value === undefined) {
 			return nFCol;
@@ -905,7 +887,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	
 	this.PBgCol = function(value) {
 		if (value === undefined) {
 			return pBgCol;
@@ -913,8 +894,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			pBgCol = value;
 			return this;
 		}
-	};
-		
+	};		
 	this.PFCol = function(value) {
 		if (value === undefined) {
 			return pFCol;
@@ -923,7 +903,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	
 	this.Value1FS = function(value) {
 		if (value === undefined) {
 			return value1FS;
@@ -932,7 +911,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	
 	this.Value2FS = function(value) {
 		if (value === undefined) {
 			return value2FS;
@@ -941,7 +919,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	
 	this.Value3FS = function(value) {
 		if (value === undefined) {
 			return value3FS;
@@ -986,8 +963,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 	this.afterUpdate = function() {
 		
 		var arrayOfValues = [];
-		var arrayOfLabels = [];
-		
+		var arrayOfLabels = [];		
 		var pp = new Array();
 		
 		if (meta_data != null || meta_data.dimension != null){
@@ -1074,7 +1050,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 	};
 });
 
-
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iconToolTip", function() {
 
 	var that = this;
@@ -1098,10 +1073,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iconToolTip", function(
 	};
 	
 	this.afterUpdate = function() {
-	
-		var iconHeight = this.$().height();
-		var iconWidth = this.$().width();	
-		var iconSize = Math.min(iconHeight, iconWidth);
+		var iconSize = Math.min(this.$().height(), this.$().width());
 		iconSize = iconSize + "px";
 		
 		var currentCSSClass = "iconClass" + currentDiv;
@@ -1131,14 +1103,6 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iconToolTip", function(
 			return iconColor; 
 		} else { 
 			iconColor = value; 
-			return this; 
-		}
-	};
-	this.IconSize = function(value) {
-		if (value === undefined) { 
-			return iconSize; 
-		} else { 
-			iconSize = value; 
 			return this; 
 		}
 	};
@@ -1172,8 +1136,8 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iconToolTip", function(
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() {
 
 	var that = this;
-	var currentDiv = null, startdegree = null, dWidth = null, cWidth = null, dValue = null, info = null,
-	vFontsize = null, iFontsize = null, vColor = null, iColor =null, uom = null, fgcolor = null, bgcolor = null;
+	var hardCodedValue = null, currentDiv = null, startDegree = null, dWidth = null, cWidth = null, dValue = null, info = null,
+	vFontSize = null, iFontSize = null, vColor = null, iColor =null, uOM = null, fgColor = null, bgColor = null;
 	
 	this.init = function() {
 		this.$().click(function() {
@@ -1183,37 +1147,55 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() 
 	};
 	
 	this.afterUpdate = function() {
-		var circleHeight = this.$().height();
-		var circleWidth = this.$().width();
-		var circleSize = Math.min(circleHeight, circleWidth);		
-		var dText = dValue + uom;				
-		var circleDiv  = '<div id="' + currentDiv + '" data-bordersize="' + cWidth + '" data-startdegree="' + startdegree + '" data-dimension="' + circleSize +					
-  						 '" data-text="' + dText + '" data-info="' + info + '" data-width="' + dWidth + '" data-fontsize="' + vFontsize +
-  						 '" data-percent="' + dValue + '" data-fgcolor="' + fgcolor + '" data-bgcolor="' + bgcolor + '"></div>'; 
-
-		this.$().append(circleDiv);
+		var actualValue = null;
 		
+		if (hardCodedValue == 0 && dataResultCell != null){
+			actualValue = dataResultCell;
+		} else {
+			actualValue = hardCodedValue;
+		}
+				
+		var circleSize = Math.min(this.$().height(), this.$().width());		
+		var circleDiv  = '<div id="' + currentDiv + '" data-bordersize="' + cWidth + '" data-startdegree="' + startDegree + '" data-dimension="' + circleSize +					
+  						 '" data-text="' + actualValue + uOM + '" data-info="' + info + '" data-width="' + dWidth + '" data-fontsize="' + vFontSize +
+  						 '" data-percent="' + actualValue + '" data-fgcolor="' + fgColor + '" data-bgcolor="' + bgColor + '"></div>'; 
+
+		this.$().append(circleDiv);		
 		$('#' + currentDiv).circliful();
 		
 		$(".circle-info-half").css({
-			fontSize: iFontsize + "px",
+			fontSize: iFontSize + "px",
 			color: iColor
 		});
 		$(".circle-text").css({
 			color: vColor
-		});
-				
+		});				
 	};
-	
-	this.Startdegree = function(value) {
+	this.dataResultCell = function(value) {
 		if (value === undefined) { 
-			return startdegree; 
+			return dataResultCell; 
 		} else { 
-			startdegree = value; 
+			dataResultCell = value; 
 			return this; 
 		}
 	};
-	this.DWidth = function(value) {
+	this.hardCodedValue = function(value) {
+		if (value === undefined) { 
+			return hardCodedValue; 
+		} else { 
+			hardCodedValue = value; 
+			return this; 
+		}
+	};
+	this.startDegree = function(value) {
+		if (value === undefined) { 
+			return startDegree; 
+		} else { 
+			startDegree = value; 
+			return this; 
+		}
+	};
+	this.dWidth = function(value) {
 		if (value === undefined) { 
 			return dWidth; 
 		} else { 
@@ -1221,7 +1203,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() 
 			return this; 
 		}
 	};
-	this.CWidth = function(value) {
+	this.cWidth = function(value) {
 		if (value === undefined) { 
 			return cWidth; 
 		} else { 
@@ -1229,15 +1211,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() 
 			return this; 
 		}
 	};
-	this.DValue = function(value) {
-		if (value === undefined) { 
-			return dValue; 
-		} else { 
-			dValue = value; 
-			return this; 
-		}
-	};
-	this.Info = function(value) {
+	this.info = function(value) {
 		if (value === undefined) { 
 			return info; 
 		} else { 
@@ -1245,23 +1219,23 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() 
 			return this; 
 		}
 	};
-	this.VFontsize = function(value) {
+	this.vFontSize = function(value) {
 		if (value === undefined) { 
-			return vFontsize; 
+			return vFontSize; 
 		} else { 
-			vFontsize = value; 
+			vFontSize = value; 
 			return this; 
 		}
 	};
-	this.IFontsize = function(value) {
+	this.iFontSize = function(value) {
 		if (value === undefined) { 
-			return iFontsize; 
+			return iFontSize; 
 		} else { 
-			iFontsize = value; 
+			iFontSize = value; 
 			return this; 
 		}
 	};
-	this.VColor = function(value) {
+	this.vColor = function(value) {
 		if (value === undefined) { 
 			return vColor; 
 		} else { 
@@ -1269,7 +1243,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() 
 			return this; 
 		}
 	};
-	this.IColor = function(value) {
+	this.iColor = function(value) {
 		if (value === undefined) { 
 			return iColor; 
 		} else { 
@@ -1277,30 +1251,108 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() 
 			return this; 
 		}
 	};
-	this.Uom = function(value) {
+	this.uOM = function(value) {
 		if (value === undefined) { 
-			return uom; 
+			return uOM; 
 		} else { 
-			uom = value; 
+			uOM = value; 
 			return this; 
 		}
 	};
-	this.Fgcolor = function(value) {
+	this.fgColor = function(value) {
 		if (value === undefined) { 
-			return fgcolor; 
+			return fgColor; 
 		} else { 
-			fgcolor = value; 
+			fgColor = value; 
 			return this; 
 		}
 	};
-	this.Bgcolor = function(value) {
+	this.bgColor = function(value) {
 		if (value === undefined) { 
-			return bgcolor; 
+			return bgColor; 
 		} else { 
-			bgcolor = value; 
+			bgColor = value; 
 			return this; 
 		}
 	};
-		
-		
+});
+
+sap.designstudio.sdk.Component.subclass("com.iprosis.sch.flowType", function() {
+
+	var that = this;
+	var stringText = null, originalFontSize = null, minimumSize = null, maximumSize = null, minimumFontSize = null, maximumFontSize = null, fontRatio = null;
+
+	this.init = function() {
+		this.$().click(function() {
+			that.fireEvent("onclick");
+		});
+	};
+	
+	this.afterUpdate = function() {						
+		this.$().text(stringText);													
+		this.$().flowtype({		
+			minimum: minimumSize,
+			maximum: maximumSize,
+			minFont: minimumFontSize,
+			maxFont: maximumFontSize,
+			fontRatio: fontRatio
+		});
+	}
+	
+	this.stringText = function(value) {
+		if (value === undefined) { 
+			return stringText; 
+		} else { 
+			stringText = value; 
+			return this; 
+		}
+	};	
+	this.originalFontSize = function(value) {
+		if (value === undefined) { 
+			return originalFontSize; 
+		} else { 
+			originalFontSize = value; 
+			return this; 
+		}
+	};	
+	this.minimumSize = function(value) {
+		if (value === undefined) { 
+			return minimumSize; 
+		} else { 
+			minimumSize = value; 
+			return this; 
+		}
+	};
+	this.maximumSize = function(value) {
+		if (value === undefined) { 
+			return maximumSize; 
+		} else { 
+			maximumSize = value; 
+			return this; 
+		}
+	};
+	this.minimumFontSize = function(value) {
+		if (value === undefined) { 
+			return minimumFontSize; 
+		} else { 
+			minimumFontSize = value; 
+			return this; 
+		}
+	};
+	this.maximumFontSize = function(value) {
+		if (value === undefined) { 
+			return maximumFontSize; 
+		} else { 
+			maximumFontSize = value; 
+			return this; 
+		}
+	};
+	this.fontRatio = function(value) {
+		if (value === undefined) { 
+			return fontRatio; 
+		} else { 
+			fontRatio = value; 
+			return this; 
+		}
+	};
 });

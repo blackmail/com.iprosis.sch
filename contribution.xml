@@ -236,7 +236,6 @@
 		<cssInclude>res/css/component.css</cssInclude>
 		<property type="String" title="Icon Code" id="IconCode"></property>
 		<property type="Color" title="Icon Color" id="IconColor"></property>
-		<property type="int" title="Icon Size" id="IconSize"></property>
 		<property type="String" title="Icon ToolTip Text" id="IconToolTipText"></property>
 		<property type="String" title="Icon ToolTip Position" id="IconToolTipPosition">
 			<possibleValue>left</possibleValue>
@@ -269,38 +268,62 @@
 		<component id="circliful" title="iProsis circliful" icon="res/circle.png"
 		handlerType="div"
 		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		tooltip="iProsis circliful" databound="false" group="iprosis">
+		tooltip="iProsis circliful" databound="true" group="iprosis">
 		<jsInclude>res/js/jquery.circliful.min.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/jquery.circliful.css</cssInclude>
 		<cssInclude>res/css/component.css</cssInclude>
-		<property type="int" title="Start Degree" id="Startdegree"></property>
-		<property type="int" title="Dimension" id="Dimension"></property>
-		<property type="int" title="Data Width" id="DWidth"></property>
-		<property type="int" title="Circle Width" id="CWidth"></property>
-		<property type="float" title="Value" id="DValue"></property>
-		<property type="String" title="Info" id="Info"></property>
-		<property type="int" title="Value Font Size" id="VFontsize"></property>
-		<property type="int" title="Info Font Size" id="IFontsize"></property>
-		<property type="Color" title="Color of Value Text" id="VColor"></property>
-		<property type="Color" title="Color of Info Text" id="IColor"></property>
-		<property type="String" title="Unit of Measure" id="Uom"></property>
-		<property type="Color" title="Foreground color" id="Fgcolor"></property>
-		<property type="Color" title="Background Color" id="Bgcolor"></property>
+		<property id="hardCodedValue" title="Hard Coded Value" type="float" tooltip="This value overwrites the Data Result Cell if Selected"></property>
+		<property id="DataResultCell" title="ResultCell" type="ResultCell"
+			tooltip="Holds a reference to a result cell"
+			group="DataBinding">
+		</property>
+		<property type="int" title="Start Degree" id="startDegree"></property>		
+		<property type="int" title="Data Width" id="dWidth"></property>
+		<property type="int" title="Circle Width" id="cWidth"></property>
+		<property type="String" title="Info" id="info"></property>
+		<property type="int" title="Value Font Size" id="vFontSize"></property>
+		<property type="int" title="Info Font Size" id="iFontSize"></property>
+		<property type="Color" title="Color of Value Text" id="vColor"></property>
+		<property type="Color" title="Color of Info Text" id="iColor"></property>
+		<property type="String" title="Unit of Measure" id="uOM"></property>
+		<property type="Color" title="Foreground color" id="fgColor"></property>
+		<property type="Color" title="Background Color" id="bgColor"></property>
 		
 		<initialization>	
-			<defaultValue property="Startdegree">180</defaultValue>
-			<defaultValue property="DWidth">30</defaultValue>			
-			<defaultValue property="CWidth">15</defaultValue>			
-			<defaultValue property="DValue"></defaultValue>
-			<defaultValue property="Info">New Clients</defaultValue>
-			<defaultValue property="VFontsize">38</defaultValue>
-			<defaultValue property="IFontsize">38</defaultValue>
-			<defaultValue property="VColor">#333333</defaultValue>
-			<defaultValue property="IColor">#999999</defaultValue>
-			<defaultValue property="Uom">%</defaultValue>
-			<defaultValue property="Fgcolor">#61a9dc</defaultValue>
-			<defaultValue property="Bgcolor">#eee</defaultValue>
+			<defaultValue property="startDegree">180</defaultValue>
+			<defaultValue property="dWidth">30</defaultValue>			
+			<defaultValue property="cWidth">15</defaultValue>			
+			<defaultValue property="info">New Clients</defaultValue>
+			<defaultValue property="vFontSize">38</defaultValue>
+			<defaultValue property="iFontSize">38</defaultValue>
+			<defaultValue property="vColor">#333333</defaultValue>
+			<defaultValue property="iColor">#999999</defaultValue>
+			<defaultValue property="uOM">%</defaultValue>
+			<defaultValue property="fgColor">#61a9dc</defaultValue>
+			<defaultValue property="bgColor">#eee</defaultValue>
+			<defaultValue property="WIDTH">300</defaultValue>
+			<defaultValue property="HEIGHT">300</defaultValue>	
+		</initialization>	
+		</component>
+		
+		<component id="flowType" title="iProsis flowType" icon="res/circle.png"
+		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
+		tooltip="iProsis flowType" databound="false" group="iprosis">
+		<jsInclude>res/js/flowtype.js</jsInclude>
+		<jsInclude>res/js/component.js</jsInclude>
+		<cssInclude>res/css/component.css</cssInclude>
+		<property type="String" title="Text" id="stringText"></property>
+		<property type="int" title="Original Font Size" id="originalFontSize"></property>
+		<property type="int" title="Minimum Size" id="minimumSize"></property>
+		<property type="int" title="Maximum Size" id="maximumSize"></property>
+		<property type="int" title="Minimum Font Size" id="minimumFontSize"></property>
+		<property type="int" title="Maximum Font Size" id="maximumFontSize"></property>
+		<property type="int" title="Font Ratio" id="fontRatio"></property>
+		
+		<initialization>	
+			<defaultValue property="StringText">Sample Text</defaultValue>
 		</initialization>	
 		</component>
 </sdkExtension>

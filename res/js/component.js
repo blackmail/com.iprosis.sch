@@ -793,8 +793,10 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 
 	var that = this;
-	var selectedValue1 = null, selectedValue2 = null, selectedValue3 = null, nBgCol = null, nFCol = null, pBgCol = null, 
-	pFCol = null, value1FS = null, value2FS = null, value3FS = null;
+	var selectedValueRC1 = null, selectedValueRC2 = null, selectedValueRC3 = null, selectedValue1 = null, selectedValue2 = null, selectedValue3 = null,
+	colorChangeProperty = null, nBgCol = null, nFCol = null, pBgCol = null, pFCol = null, opacity = null,
+	value1FS = null, value2FS = null, value3FS = null; 
+
 	var currentDiv = null, currentTitle = null, currentPerc = null, currentValue= null, currentTitleDiv = null, currentPercDiv = null, currentValueDiv = null;
 	this._alive = false;
 	
@@ -815,7 +817,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			that.fireEvent("onclick");
 		});
 		
-		if (this._alive) {
+		/*if (this._alive) {
 			return;
 		} else {
 			currentDiv = this.$().attr('id');
@@ -829,12 +831,38 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 							'<div id="' + currentValue + '">0</div>' +
 						  '</div>');	
 			this._alive = true;
+		}*/
+		if (this._alive){
+			return;
+		} else {
+			/*currentDiv = this.$().attr('id');
+			this.icon = document.createElement("div");	
+			this.icon.setAttribute("id", currentDiv);*/
+			this.line1 =  document.createElement("div");	
+			this.line2 =  document.createElement("div");	
+			this.line3 =  document.createElement("div");	
+			
+			this.$().append($(this.line1));
+			this.$().append($(this.line2));
+			this.$().append($(this.line3));
+			
+			this._alive = true;
 		}
 	};
 	
 	this.afterUpdate = function() {
 		
-		var actualPerc = selectedValue2.data[0];
+		//var actualPerc = selectedValue2.data[0];
+		
+		var decisionProp = eval(selectedValue + colorChangeProperty);
+		
+		if (decisionProp = null) {
+			decisionProp = eval(decisionProp + RC);
+			if (decisionProp == null){
+				decisionProp = 0;
+			}
+		}
+		
 		
 		if (actualPerc > 0) {			
 			pNDesign(pBgCol, pFCol);
@@ -847,7 +875,31 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 		document.getElementById(currentValue).innerHTML = selectedValue3.data[0];
 	};
 	
-	this.SelectedValue1 = function(value) {
+	this.selectedValueRC1 = function(value) {
+		if (value === undefined) {
+			return selectedValueRC1;
+		} else {
+			selectedValueRC1 = value;
+			return this;
+		}
+	};
+	this.selectedValueRC2 = function(value) {
+		if (value === undefined) {
+			return selectedValueRC2;
+		} else {
+			selectedValueRC2 = value;
+			return this;
+		}
+	};
+	this.selectedValueRC3 = function(value) {
+		if (value === undefined) {
+			return selectedValueRC3;
+		} else {
+			selectedValueRC3  = value;
+			return this;
+		}
+	};	
+	this.selectedValue1 = function(value) {
 		if (value === undefined) {
 			return selectedValue1;
 		} else {
@@ -855,7 +907,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.SelectedValue2 = function(value) {
+	this.selectedValue2 = function(value) {
 		if (value === undefined) {
 			return selectedValue2;
 		} else {
@@ -863,7 +915,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.SelectedValue3 = function(value) {
+	this.selectedValue3 = function(value) {
 		if (value === undefined) {
 			return selectedValue3;
 		} else {
@@ -871,7 +923,15 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.NBgCol = function(value) {
+	this.colorChangeProperty = function(value) {
+		if (value === undefined) {
+			return colorChangeProperty;
+		} else {
+			colorChangeProperty  = value;
+			return this;
+		}
+	};
+	this.nBgCol = function(value) {
 		if (value === undefined) {
 			return nBgCol;
 		} else {
@@ -879,7 +939,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.NFCol = function(value) {
+	this.nFCol = function(value) {
 		if (value === undefined) {
 			return nFCol;
 		} else {
@@ -887,7 +947,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.PBgCol = function(value) {
+	this.pBgCol = function(value) {
 		if (value === undefined) {
 			return pBgCol;
 		} else {
@@ -895,7 +955,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};		
-	this.PFCol = function(value) {
+	this.pFCol = function(value) {
 		if (value === undefined) {
 			return pFCol;
 		} else {
@@ -903,7 +963,15 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.Value1FS = function(value) {
+	this.opacity = function(value) {
+		if (value === undefined) {
+			return opacity;
+		} else {
+			opacity  = value;
+			return this;
+		}
+	};
+	this.value1FS = function(value) {
 		if (value === undefined) {
 			return value1FS;
 		} else {
@@ -911,7 +979,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.Value2FS = function(value) {
+	this.value2FS = function(value) {
 		if (value === undefined) {
 			return value2FS;
 		} else {
@@ -919,7 +987,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			return this;
 		}
 	};
-	this.Value3FS = function(value) {
+	this.value3FS = function(value) {
 		if (value === undefined) {
 			return value3FS;
 		} else {

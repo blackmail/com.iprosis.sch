@@ -168,31 +168,35 @@
 	<jsInclude>res/js/component.js</jsInclude>
 	<cssInclude>res/css/component.css</cssInclude>
 	<property id="onclick" title="On Click" type="ScriptText" group="Events" />
-	<property id="SelectedValue1" title="Selected Value 1" type="String" tooltip="Title">
+	<property id="selectedValueRC1" title="Line 1 Value" type="ResultCell" tooltip="Result Cell" group="DataBinding" />
+	<property id="selectedValueRC2" title="Line 2 Value" type="ResultCell" tooltip="Result Cell" group="DataBinding" />
+	<property id="selectedValueRC3" title="Line 3 Value" type="ResultCell" tooltip="Result Cell" group="DataBinding" />
+	<property id="selectedValue1" type="String" title="Line 1 Value (Overwrites RC)"  />
+	<property id="selectedValue2" type="String" title="Line 2 Value (Overwrites RC)"  />
+	<property id="selectedValue3" type="String" title="Line 3 Value (Overwrites RC)"  />
+	<property id="colorChangeProperty" title="Color Change Property" type="int" >
+			<possibleValue>1</possibleValue>
+			<possibleValue>2</possibleValue>
+			<possibleValue>3</possibleValue>
 	</property>
-	<property id="SelectedValue2" title="Selected Value 2" type="ResultCell"
-			tooltip="Holds a reference to a result cell"
-			group="DataBinding">
-	</property>
-	<property id="SelectedValue3" title="Selected Value 3" type="ResultCell"
-			tooltip="Holds a reference to a result cell"
-			group="DataBinding">
-	</property>
-	<property id="NBgCol" title="Negetive Background Color" type="Color" group="Display" />
-	<property id="NFCol" title="Negetive Font Color" type="Color" group="Display" />
-	<property id="PBgCol" title="Positive Background Color" type="Color" group="Display" />
-	<property id="PFCol" title="Positive Font Color" type="Color" group="Display" />
-	<property id="Value1FS" title="Value 1 Font Size in PX" type="int" group="Display" />
-	<property id="Value2FS" title="Value 2 Font Size in PX" type="int" group="Display" />
-	<property id="Value3FS" title="Value 3 Font Size in PX" type="int" group="Display" />
+	<property id="nBgCol" title="Negetive Background Color" type="Color" group="Display" />
+	<property id="nFCol" title="Negetive Font Color" type="Color" group="Display" />
+	<property id="pBgCol" title="Positive Background Color" type="Color" group="Display" />
+	<property id="pFCol" title="Positive Font Color" type="Color" group="Display" />
+	<property id="opacity" type="float" title="Opacity (0-1)" />
+	<property id="value1FS" title="Value 1 Font Size in PX" type="int" group="Display" />
+	<property id="value2FS" title="Value 2 Font Size in PX" type="int" group="Display" />
+	<property id="value3FS" title="Value 3 Font Size in PX" type="int" group="Display" />
 		<initialization>	
 			<defaultValue property="PBackground">#C6EFCE</defaultValue>
 			<defaultValue property="NBackground">#FFC7CE</defaultValue>
 			<defaultValue property="PFCol">#006100</defaultValue>
 			<defaultValue property="NFCol">#9B0006</defaultValue>
+			<defaultValue property="opacity">0.6</defaultValue>
 			<defaultValue property="Value1FS">14</defaultValue>
 			<defaultValue property="Value2FS">24</defaultValue>
 			<defaultValue property="Value3FS">14</defaultValue>
+			<defaultValue property="ColorChangeProperty">2</defaultValue>
 		</initialization>
 	</component>
 	<component id="iDonut" title="iProsis Donut" icon="res/icoFree.png"

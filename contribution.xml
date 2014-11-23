@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sdkExtension xmlns="http://www.sap.com/bi/zen/sdk"
-	title="iProsis SCH"
-	version="1.0"
+	title="iProsis"
+	version="2.0"
 	vendor="iProsis"
 	id="com.iprosis.sch">
 	<group title="iProsis" id="iprosis" />
@@ -79,8 +79,9 @@
 			<defaultValue property="HEIGHT">60</defaultValue>			
 		</initialization>
 	</component>
-	<component id="iGauge" title="iProsis Gauge for SMLT" icon="res/icoFree.png"
+	<component id="iGauge" title="iProsis Gauge" icon="res/icoFree.png"
 		handlerType="div"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
 		tooltip="Gauge" databound="true" group="iprosis">
 		<jsInclude>res/js/CanvasDial.js</jsInclude>
 		<jsInclude>res/js/gauge.min.js</jsInclude>
@@ -128,7 +129,6 @@
 		<property id="TickmarksColor" title="Tickmarks Color" type="Color"></property>
 		<property id="TicksColor" title="Main Ticks Color" type="Color"></property>
 		<property id="TicksColor1" title="Sub Ticks Color" type="Color"></property>
-		<!-- <property id="PointerDomeColor" title="Pointer Dome Color" type="Color"></property> -->
 		<property id="MidArcColor" title="Middle Arc Color" type="Color"></property>
 		<property id="Backlash" title="BackLash" type="float"></property>
 		<initialization>
@@ -160,14 +160,11 @@
 			<defaultValue property="TickmarksRadius">70</defaultValue>
 			<defaultValue property="ShowScaling">false</defaultValue>
 			<defaultValue property="ColorArcEnd">100</defaultValue>
-			<!-- <defaultValue property="PointerDomeColor">#666666</defaultValue>  -->
 			<defaultValue property="MidArcColor">#888888</defaultValue>
 		</initialization>
 	</component>
 	<component id="iKPI" title="iProsis KPI Tile" icon="res/icoFree.png"
-		handlerType="div"
-		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		tooltip="KPI Tile" databound="true" group="iprosis">
+		handlerType="div" tooltip="KPI Tile" databound="true" group="iprosis">
 	<jsInclude>res/js/component.js</jsInclude>
 	<cssInclude>res/css/component.css</cssInclude>
 	<property id="onclick" title="On Click" type="ScriptText" group="Events" />
@@ -199,9 +196,7 @@
 		</initialization>
 	</component>
 	<component id="iDonut" title="iProsis Donut" icon="res/icoFree.png"
-		handlerType="div"
-		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		tooltip="Donut" databound="true" group="iprosis">
+		handlerType="div" tooltip="Donut" databound="true" group="iprosis">
 		<jsInclude>res/js/component.js</jsInclude>
 		<jsInclude>res/js/raphael-min.js</jsInclude>
 		<jsInclude>res/js/morris.js</jsInclude>
@@ -218,18 +213,14 @@
 		<property type="String" title="Unit of Measure" id="UOM"></property>
 		<property type="int" title="Number of Decimal Places" id="NoDecimal"></property>
 		<property type="boolean" title="Auto Resize (Low Performance if True)" id="AResize"></property>
-	
 		<initialization>	
 			<defaultValue property="IColor">#0B62A4</defaultValue>
 			<defaultValue property="LColor">#333333</defaultValue>
 			<defaultValue property="AResize">false</defaultValue>
 		</initialization>
-	</component>
-	
+	</component>	
 	<component id="iconToolTip" title="iProsis Icon Tool Tip" icon="res/callOut.png"
-		handlerType="div"
-		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		tooltip="iProsis Icon Tool Tip" databound="false" group="iprosis">
+		handlerType="div" tooltip="iProsis Icon Tool Tip" databound="false" group="iprosis">
 		<jsInclude>res/js/opentip-jquery.min.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/opentip.css</cssInclude>
@@ -263,12 +254,8 @@
 			<defaultValue property="IconToolTipStyle">glass</defaultValue>
 		</initialization>			
 	</component>
-	
-	
-		<component id="circliful" title="iProsis circliful" icon="res/circle.png"
-		handlerType="div"
-		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		tooltip="iProsis circliful" databound="true" group="iprosis">
+	<component id="circliful" title="iProsis circliful" icon="res/circle.png"
+		handlerType="div" tooltip="iProsis circliful" databound="true" group="iprosis">
 		<jsInclude>res/js/jquery.circliful.min.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/jquery.circliful.css</cssInclude>
@@ -288,8 +275,7 @@
 		<property type="Color" title="Color of Info Text" id="iColor"></property>
 		<property type="String" title="Unit of Measure" id="uOM"></property>
 		<property type="Color" title="Foreground color" id="fgColor"></property>
-		<property type="Color" title="Background Color" id="bgColor"></property>
-		
+		<property type="Color" title="Background Color" id="bgColor"></property>		
 		<initialization>	
 			<defaultValue property="startDegree">180</defaultValue>
 			<defaultValue property="dWidth">30</defaultValue>			
@@ -305,12 +291,9 @@
 			<defaultValue property="WIDTH">300</defaultValue>
 			<defaultValue property="HEIGHT">300</defaultValue>	
 		</initialization>	
-		</component>
-		
+		</component>		
 		<component id="flowType" title="iProsis flowType" icon="res/circle.png"
-		handlerType="div"
-		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html"
-		tooltip="iProsis flowType" databound="false" group="iprosis">
+		handlerType="div" tooltip="iProsis flowType" databound="false" group="iprosis">
 		<jsInclude>res/js/flowtype.js</jsInclude>
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>
@@ -320,8 +303,7 @@
 		<property type="int" title="Maximum Size" id="maximumSize"></property>
 		<property type="int" title="Minimum Font Size" id="minimumFontSize"></property>
 		<property type="int" title="Maximum Font Size" id="maximumFontSize"></property>
-		<property type="int" title="Font Ratio" id="fontRatio"></property>
-		
+		<property type="int" title="Font Ratio" id="fontRatio"></property>		
 		<initialization>	
 			<defaultValue property="StringText">Sample Text</defaultValue>
 		</initialization>	

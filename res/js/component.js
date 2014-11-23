@@ -57,7 +57,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.totemTicker", function(
 	this.afterUpdate = function() {
 		var tTicker = '<ul id="vertical-ticker" style="height:100%;width:100%">' + '<meta charset="utf-8">';
 
-		for (var i = 1; i < 11; i++){
+		for (var i = 1; i < 11; i++) {
 			var textLine = eval("totem" + i);
 			var lineElement = "#totemLine" + i; 
 			if (textLine == ""){
@@ -80,7 +80,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.totemTicker", function(
 			mousestop	:	true,
 		});
 					
-		for (var i = 1;  i < 11; i++){		
+		for (var i = 1;  i < 11; i++) {		
 			$("#totemLine" + i).click(createCallback(i));
 		}
 		
@@ -173,7 +173,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.horizontalScroller", fu
     		return this;  
     	}       
     };    
-    this.sdValue = function(value){        
+    this.sdValue = function(value) {        
 		if(value===undefined) {    
 			return returnedValue;   
 		} else {    
@@ -298,7 +298,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		that.$().append($(that.midArc));
 	}
 	
-	function settingObjectsSize(){
+	function settingObjectsSize() {
 		divW = that.$().width();
 		divH = that.$().height();
 
@@ -308,7 +308,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 			divW = divH * 2;
 		}
 		
-		if (divH > 149){
+		if (divH > 149) {
 			var gaugeTop = 4 + (divH - 150)/100 * 12;
 			var gaugeTopPx = gaugeTop + "px";
 			
@@ -333,7 +333,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		sRadius = startingPoints - lineWidth/2;		
 	}
 	
-	function setScaling(){
+	function setScaling() {
 			
 			that.valueTables = document.createElement("table");
 			that.valueTables.setAttribute("id", currentTable);
@@ -356,22 +356,22 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 			that.tdMinValue.className = "divMinValue";
 	}
 		
-	function setActualValue(recivedValue){
+	function setActualValue(recivedValue) {
 		
 		var originalValue = null;
 		
-		if (typeof recivedValue == "object"){
+		if (typeof recivedValue == "object") {
 			originalValue = recivedValue.data[0];
 		} else {
 			originalValue = recivedValue;
 		}
 		
-		if (originalValue == null || originalValue == "" || originalValue == 0){
+		if (originalValue == null || originalValue == "" || originalValue == 0) {
 			actualValue = NEARZERO;
 		} else {
-			if (originalValue > maxValue || originalValue == maxValue){
+			if (originalValue > maxValue || originalValue == maxValue) {
 				actualValue = maxValue;
-			} else if (originalValue < minValue || originalValue == minValue){
+			} else if (originalValue < minValue || originalValue == minValue) {
 				actualValue = NEARZERO;
 			} else {
 				actualValue = (originalValue-minValue)/(maxValue-minValue)*maxValue;
@@ -381,7 +381,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		return actualValue;
 	}
 	
-	function drawDial(currentDial, minValue, maxValue){
+	function drawDial(currentDial, minValue, maxValue) {
 
 		var tempGauge = new CanvasDial(currentDial);
 		var gaugeParams = {sweep:180, rotation:180, minvalue:minValue, maxvalue:maxValue, tickmarks:noOfTickmarks, fontfamily:'Helvetica, Arial, sans-serif', bgcolor:'#224'};
@@ -392,7 +392,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		tempGauge.drawScale({radiusPercent:tickmarksRadius, fontSizePercent:fontSizePerc, color:tickmarksColor});		
 	}	
 	
-	function createPointerArc(startingPoints){
+	function createPointerArc(startingPoints) {
 		var context = that.pointerArc.getContext('2d');
 		context.fillStyle = pointerDomeColor;
 		context.beginPath();		
@@ -401,7 +401,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		context.fill();
 	}
 
-	function createArc(sPoint, ePoint, aColor){
+	function createArc(sPoint, ePoint, aColor) {
 		var context = that.arcDiv.getContext('2d');
 		context.beginPath();		
 		context.arc(startingPoints, startingPoints - 8, (sRadius - 8)*colorArcEnd/100, sPoint, ePoint);
@@ -410,7 +410,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		context.stroke();
 	}
 	
-	function createMidArc(){
+	function createMidArc() {
 		var context = that.midArc.getContext('2d');		
 		context.beginPath();		
 		context.arc(startingPoints, startingPoints - 8, divH/2 - 8, Math.PI, 0);
@@ -419,7 +419,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		context.stroke();
 	}
 	
-	function drawArc(){
+	function drawArc() {
 		lowEndPerc = Math.max(lowEndPerc, minValue);
 		lowEndPerc = Math.min(lowEndPerc, maxValue);		
 		mediumEndPerc = Math.max(mediumEndPerc, lowEndPerc);
@@ -438,7 +438,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 			that.fireEvent("onclick");
 		});
 		
-		if (this._alive){
+		if (this._alive) {
 			return;
 		} else {			
 			createHtml();
@@ -470,7 +470,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 		gauge.maxValue = maxValue;
 		gauge.animationSpeed = 32;
 		
-		if (hardCodedValue == 0 && dataResultCell != null){
+		if (hardCodedValue == 0 && dataResultCell != null) {
 			actualValue = setActualValue(dataResultCell);
 		} else {
 			actualValue = setActualValue(hardCodedValue);
@@ -478,7 +478,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 
 		gauge.set(actualValue);
 
-		if (noOfNeedles > 1){
+		if (noOfNeedles > 1) {
 				var opts1 = {
 						  lines: 12,
 						  angle: 0.0,
@@ -497,7 +497,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iGauge", function() {
 				gauge1.maxValue = maxValue;
 				gauge1.animationSpeed = 32;
 				
-				if (hardCodedValue1 == 0 && dataResultCell1 != null){
+				if (hardCodedValue1 == 0 && dataResultCell1 != null) {
 					actualValue1 = setActualValue(dataResultCell1);
 				} else {
 					actualValue1 = setActualValue(hardCodedValue1);
@@ -798,7 +798,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 	var currentDiv = null, currentTitle = null, currentPerc = null, currentValue= null, currentTitleDiv = null, currentPercDiv = null, currentValueDiv = null;
 	this._alive = false;
 	
-	function pNDesign(bGColor, fColor){
+	function pNDesign(bGColor, fColor) {
 		$("#" + currentDiv).css("background", bGColor);
 		$("#" + currentTitle).css("color", fColor);
 		$("#" + currentPerc).css("color", fColor);
@@ -815,7 +815,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 			that.fireEvent("onclick");
 		});
 		
-		if (this._alive){
+		if (this._alive) {
 			return;
 		} else {
 			currentDiv = this.$().attr('id');
@@ -836,7 +836,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iKPI", function() {
 		
 		var actualPerc = selectedValue2.data[0];
 		
-		if (actualPerc > 0){			
+		if (actualPerc > 0) {			
 			pNDesign(pBgCol, pFCol);
 		} else {		
 			pNDesign(nBgCol, nFCol);
@@ -940,7 +940,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 			that.fireEvent("onclick");
 		});
 		
-		if (this._alive){
+		if (this._alive) {
 			return;
 		} else {
 			currentDiv = this.$().attr('id');
@@ -966,8 +966,8 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.iDonut", function() {
 		var arrayOfLabels = [];		
 		var pp = new Array();
 		
-		if (meta_data != null || meta_data.dimension != null){
-			for (var i=0; i < meta_data.dimensions[0].members.length; i++){			
+		if (meta_data != null || meta_data.dimension != null) {
+			for (var i=0; i < meta_data.dimensions[0].members.length; i++) {			
 				var new_pp = {
 								value : dataR.data[i].toFixed(noDecimal),
 								label : meta_data.dimensions[0].members[i].text
@@ -1149,7 +1149,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.circliful", function() 
 	this.afterUpdate = function() {
 		var actualValue = null;
 		
-		if (hardCodedValue == 0 && dataResultCell != null){
+		if (hardCodedValue == 0 && dataResultCell != null) {
 			actualValue = dataResultCell;
 		} else {
 			actualValue = hardCodedValue;

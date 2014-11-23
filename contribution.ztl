@@ -23,7 +23,7 @@ class com.iprosis.sch.horizontalScroller extends Component {
 	*}
 }
 
-class com.iprosis.sch.sGauge extends Component {
+class com.iprosis.sch.iGauge extends Component {
 	void setSelectedValue(ResultCell selectedValue){*
 		this.DataResultCell = selectedValue;
 	*}

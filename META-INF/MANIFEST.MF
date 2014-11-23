@@ -1,7 +1,7 @@
-Manifest-Version: 1.0
+Manifest-Version: 2.0
 Bundle-ManifestVersion: 2
-Bundle-Name: iProsis SCH
+Bundle-Name: iProsis
 Bundle-SymbolicName: com.iprosis.sch;singleton:=true
-Bundle-Version: 1.0
+Bundle-Version: 2.0
 Require-Bundle: com.sap.ip.bi.zen.rt.components.sdk.eclipse
 Bundle-Vendor: iProsis

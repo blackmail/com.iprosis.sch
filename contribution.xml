@@ -5,6 +5,7 @@
 	vendor="iProsis"
 	id="com.iprosis.sch">
 	<group title="iProsis" id="iprosis" />
+	<!--  test  -->
 	<component id="dateOffset" title="iProsis Date Offset" icon="res/icon.png" handlerType="div" group="iprosis">														
 		<jsInclude>res/js/component.js</jsInclude>
 		<cssInclude>res/css/component.css</cssInclude>		

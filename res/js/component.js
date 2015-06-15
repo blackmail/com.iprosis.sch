@@ -1445,7 +1445,7 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.liveImage", function() 
 				return imageURL; 
 			} else { 
 				imageURL = value; 
-				return this; 
+				return this; //
 			}
 		};
 	});

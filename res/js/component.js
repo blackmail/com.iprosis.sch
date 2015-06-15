@@ -1424,3 +1424,28 @@ sap.designstudio.sdk.Component.subclass("com.iprosis.sch.flowType", function() {
 		}
 	};
 });
+
+
+sap.designstudio.sdk.Component.subclass("com.iprosis.sch.liveImage", function() {
+
+	var that = this;
+	var imageURL = null;
+
+	this.init = function() {
+		this.$().click(function() {
+			that.fireEvent("onclick");
+		});
+	};
+	
+	this.afterUpdate = function() {
+		this.$().html('');
+	}
+		this.ImageURL = function(value) {
+			if (value === undefined) { 
+				return imageURL; 
+			} else { 
+				imageURL = value; 
+				return this; 
+			}
+		};
+	});

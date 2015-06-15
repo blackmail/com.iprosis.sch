@@ -313,4 +313,11 @@
 			<defaultValue property="StringText">Sample Text</defaultValue>
 		</initialization>	
 		</component>
+		
+		<component id="liveImage" title="iProsis liveImage" icon="res/circle.png"
+		handlerType="div" tooltip="iProsis Live Image" databound="false" group="iprosis">
+		<jsInclude>res/js/component.js</jsInclude>
+		<property type="String" title="URL" id="ImageURL"></property>
+		</component>
+		
 </sdkExtension>
